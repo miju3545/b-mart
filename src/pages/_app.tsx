@@ -9,7 +9,7 @@ import {
   CartContextProvider,
   OrderListContextProvider,
 } from "@/contexts";
-import { Layout } from "@/components/atom";
+import { Layout } from "@/components/block";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(new QueryClient());
