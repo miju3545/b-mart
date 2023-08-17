@@ -7,8 +7,12 @@ type Props = ImageProps & {
 
 export function ImageWithFallback({ fallbackSrc, ...rest }: Props) {
   return (
-    <Box backgroundColor="blue" width={`${rest.width}px`} height={`${rest.height}px`}>
-      <NextImage {...rest} />;
-    </Box>
+    // <Box backgroundColor="gray" width="100%" height="100%">
+    <NextImage
+      {...rest}
+      style={{ width: "100%", height: "100%", display: "block", background: "red" }}
+      blurDataURL={fallbackSrc}
+    />
+    // </Box>
   );
 }

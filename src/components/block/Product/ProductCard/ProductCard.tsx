@@ -7,12 +7,19 @@ import Link from "next/link";
 
 type Props = {
   product: Product;
-  size: "sm" | "md" | "lg";
+  inCart?: boolean;
+  inWishList?: boolean;
+  size?: "sm" | "md" | "lg";
+  responsive?: boolean;
 };
 
 export function ProductCard(props: Props) {
   const {
-    product: { id, title, price, discountPrice = 0, discountPercent = 0, imageUrl }
+    product: { id, title, price, discountPrice = 0, discountPercent = 0, imageUrl },
+    size = "sm",
+    inCart = false,
+    inWishList = false,
+    responsive = false
   } = props;
 
   const getSize = () => {
@@ -25,13 +32,14 @@ export function ProductCard(props: Props) {
         return { width: 300, height: 300 };
     }
   };
+
   return (
-    <Box display="flex" flexDirection="column" style={{ border: "1px solid gray" }}>
+    <Box display="flex" flexDirection="column" width="100%">
       <Box width="100%" height="100%" style={{ position: "relative" }}>
-        <ImageWithFallback src={imageUrl} alt={title} {...getSize()} />
-        <IconButton icon="❤️" onClick={() => {}} style={{ position: "absolute", bottom: 10, right: 10 }} />
+        <ImageWithFallback src={imageUrl} alt={title} {...getSize()} layout={responsive ? "responsive" : "intrinsic"} />
+        <IconButton icon="찜" onClick={() => {}} style={{ position: "absolute", bottom: 10, right: 10 }} />
       </Box>
-      <Box display="flex" flexDirection="column">
+      <Box display="flex" flexDirection="column" style={responsive ? undefined : { width: `${getSize()?.width}px` }}>
         <Heading level={4}>
           <Link href={`/products/${id}`}>{title}</Link>
         </Heading>

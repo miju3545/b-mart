@@ -12,13 +12,13 @@ type Props = {
   list: Product[];
   col?: number;
 };
-export function ProductList({ title, list, col = 2 }: Props) {
+export function ProductList({ title, list, col = 1 }: Props) {
   return (
-    <Box display="flex" flexDirection="column" gap={10} height="200px" backgroundColor="lightGray">
+    <Box display="flex" flexDirection="column" width="100%" gap={10}>
       {title && <Heading level={3}>{title}</Heading>}
-      <ul style={{ display: "grid", gridTemplateColumns: `repeat(${col}, 1fr)` }}>
+      <ul className={cx("card-list", `col-${col}`)}>
         {list.map((product) => (
-          <ProductCard key={product.id} product={product} size="lg" />
+          <ProductCard key={product.id} product={product} size="lg" responsive />
         ))}
       </ul>
     </Box>

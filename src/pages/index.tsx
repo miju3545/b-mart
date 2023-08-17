@@ -31,42 +31,40 @@ export default function Home() {
   return (
     <Box>
       <Gnb />
-      <Box style={{ maxWidth: "1280px", margin: "auto", position: "relative" }}>
-        {/* <div>땡겨요</div> */}
-        <Promotion.Slider />
-        <MainCategoryList list={mainCategories} />
-        <Product.Scrollable title={`${user.name}님을 위해 준비한 상품`} list={products} />
-        <Product.Slider title="지금 사면 ⚡️ 번쩍 할인" list={products} />
-        <Product.List title="지금 뭐먹지?" list={products} />
-        <Product.List title="지금 필요한 생필품?" list={products} />
-        <Product.Scrollable title="새로 나왔어요" hasViewMore list={products} />
-        <Product.Scrollable title="요즘 잘팔려요" hasViewMore list={products} />
-        <Product.FlagShip
-          title={
-            <span>
-              <strong>번쩍하면 배달오는</strong> B마트 대표상품
-            </span>
-          }
-          list={products}
-        />
-        <IconButton
-          icon="장바구니 🛍️"
-          onClick={() => registerSideTab(<CartTab />)}
-          style={{
-            position: "fixed",
-            bottom: 10,
-            right: 10,
-            width: 60,
-            height: 60,
-            background: "gray",
-            borderRadius: "50%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center"
-          }}
-        />
-      </Box>
+      {/* <div>땡겨요</div> */}
+      <Promotion.Slider />
+      <MainCategoryList list={mainCategories} />
+      <Product.Scrollable title={`${user.name}님을 위해 준비한 상품`} list={products} />
+      <Product.Slider title="지금 사면 ⚡️ 번쩍 할인" list={products} />
+      <Product.List title="지금 뭐먹지?" list={products} />
+      <Product.List title="지금 필요한 생필품?" list={products} />
+      <Product.Scrollable title="새로 나왔어요" hasViewMore list={products} />
+      <Product.Scrollable title="요즘 잘팔려요" hasViewMore list={products} />
+      <Product.FlagShip
+        title={
+          <span>
+            <strong>번쩍하면 배달오는</strong> B마트 대표상품
+          </span>
+        }
+        list={products}
+      />
+      <IconButton
+        icon="장바구니 🛍️"
+        onClick={() => registerSideTab(<CartTab />)}
+        style={{
+          position: "fixed",
+          bottom: 10,
+          right: 10,
+          width: 60,
+          height: 60,
+          background: "gray",
+          borderRadius: "50%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center"
+        }}
+      />
     </Box>
   );
 }

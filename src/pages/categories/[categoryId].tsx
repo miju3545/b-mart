@@ -11,14 +11,14 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 
 export default function CategoryDetail() {
-  const { query, asPath } = useRouter();
+  const router = useRouter();
   const { registerSideTab, setPrevPageURL } = useContext(SideTabContext);
-  const categoryId = Number(query.categoryId);
+  const categoryId = Number(router.query.categoryId);
   const [data, setData] = useState<Category>();
   const [products, setProducts] = useState<ProductDto[]>([]);
 
   useEffect(() => {
-    setPrevPageURL(asPath);
+    setPrevPageURL(router.asPath);
   }, []);
 
   useEffect(() => {
@@ -33,11 +33,11 @@ export default function CategoryDetail() {
 
   return (
     <Box>
-      <Topbar title={data?.title} />
+      <Topbar title={data?.title} onPrev={router.back} />
       <Promotion.Slider />
       <SubCategoryList list={data?.subCategories || []} />
       <Product.Scrollable title="이 상품 어때요?" list={products} />
-      <Product.List list={products} />
+      <Product.List list={products} col={3} />
       <IconButton
         icon="장바구니 🛍️"
         onClick={() => registerSideTab(<CartTab />)}

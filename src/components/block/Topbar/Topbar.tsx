@@ -13,7 +13,7 @@ const cx = classNames.bind(style);
 // 상세페이지에 들어가는 Header(Gnb)입니다.
 type Props = {
   title?: ReactNode;
-  onPrev?: () => {};
+  onPrev?: () => void;
 };
 
 export function Topbar({ title, onPrev }: Props) {

@@ -1,0 +1,13 @@
+@mixin mediaGridColumn($columns) {
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (min-width: 769px) {
+    grid-template-columns: repeat(#{$columns}, 1fr);
+  }
+}
+.card-list {
+  @include mediaGridColumn(3);
+  display: grid;
+  gap: 10px;
+}
