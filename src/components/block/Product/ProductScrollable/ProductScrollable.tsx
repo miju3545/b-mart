@@ -11,7 +11,7 @@ type Props = {
 };
 export function ProductScrollable({ title, hasViewMore = false }: Props) {
   return (
-    <Box display="flex" flexDirection="column" gap={10}>
+    <Box display="flex" flexDirection="column" gap={10} height={200} backgroundColor="lightGray">
       <Box display="flex" justifyContent="space-between" alignItem="center">
         <Heading level={3}>{title}</Heading>
         {hasViewMore && (

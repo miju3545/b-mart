@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 export function MenuTab() {
   const router = useRouter();
   const { hideSideTab, prevPageURL } = useContext(SideTabContext);
-
   const history = {
     back: () => router.push(prevPageURL)
   };

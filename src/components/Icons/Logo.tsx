@@ -1,3 +1,5 @@
+import { Heading } from "../atom/Heading";
+
 export function Logo() {
-  return <h2>B 마트</h2>;
+  return <Heading level={3}>B 마트</Heading>;
 }

@@ -1,5 +1,3 @@
-import classNames from "classnames/bind";
-import style from "./ProductSlider.module.scss";
 import { Slider } from "@/components/atom/Slider";
 import { ReactNode } from "react";
 import { Heading } from "@/components/atom/Heading";
@@ -10,7 +8,7 @@ type Props = {
 };
 export function ProductSlider({ title }: Props) {
   return (
-    <Box display="flex" flexDirection="column" gap={10}>
+    <Box display="flex" flexDirection="column" gap={10} height={200} backgroundColor="lightGray">
       <Heading level={3}>{title}</Heading>
       <Slider />;
     </Box>

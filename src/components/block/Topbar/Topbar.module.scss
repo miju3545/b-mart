@@ -1,0 +1,35 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 10px;
+  width: 100%;
+  min-height: 50px;
+  border-bottom: 1px solid gray;
+
+  > div {
+    &:nth-child(1) {
+      display: flex;
+    }
+    &:nth-child(2) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &:nth-child(3).tabs {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+
+      .tab-icon {
+        width: 40px;
+        height: 40px;
+        border: 1px solid gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+      }
+    }
+  }
+}

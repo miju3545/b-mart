@@ -6,26 +6,32 @@ type Props = {
   flexDirection?: "row" | "row-reverse" | "column" | "column-reverse";
   justifyContent?: "flex-start" | "flex-end" | "center" | "space-between";
   gap?: number;
+  height?: number;
   padding?: number;
+  backgroundColor?: string;
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   style?: React.CSSProperties;
+  className?: string;
 };
 
-export function Box({ children, style, onClick, ...rest }: PropsWithChildren<Props>) {
+export function Box(props: PropsWithChildren<Props>) {
+  const { children, style, onClick, className, ...rest } = props;
   const getStyle = () => {
-    const { display, flexDirection, alignItem, justifyContent, gap = 0, padding = 0 } = rest;
+    const { display, flexDirection, alignItem, justifyContent, height, backgroundColor, gap = 0, padding = 0 } = rest;
     return {
       display,
       flexDirection,
       alignItem,
       justifyContent,
       gap: `${gap}px`,
-      padding: `${padding}px`
+      padding: `${padding}px`,
+      height: height ? `${height}px` : "fit-content",
+      backgroundColor
     };
   };
 
   return (
-    <div style={{ ...getStyle(), ...style }} onClick={onClick}>
+    <div style={{ ...getStyle(), ...style }} className={className} onClick={onClick}>
       {children}
     </div>
   );

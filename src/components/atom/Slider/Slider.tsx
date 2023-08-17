@@ -1,3 +1,5 @@
+import { Box } from "../Box";
+
 export function Slider() {
-  return <div>Slider</div>;
+  return <Box>슬라이더</Box>;
 }

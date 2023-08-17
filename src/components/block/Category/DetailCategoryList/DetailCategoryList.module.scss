@@ -1,3 +1,8 @@
+.category-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
 .category-item {
   display: flex;
   justify-content: center;

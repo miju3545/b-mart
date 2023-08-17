@@ -1,8 +1,8 @@
-import { CategoryList } from "@/components/block/Category/CateogoryList";
+import { MainCategoryList } from "@/components/block/Category/MainCateogoryList";
 import { Gnb } from "@/components/block/Gnb";
 import { Product } from "@/components/block/Product";
 import { Promotion } from "@/components/block/Promotion";
-import { PRODUCT_CATEGORIES } from "@/constants/productCategory";
+import { MAIN_CATEGORIES } from "@/constants/mainCategories";
 import { SideTabContext, UserContext } from "@/contexts/index";
 import { useContext, useEffect } from "react";
 
@@ -20,7 +20,7 @@ export default function Home() {
       <div style={{ maxWidth: "1280px", margin: "auto" }}>
         {/* <div>땡겨요</div> */}
         <Promotion.Slider />
-        <CategoryList list={PRODUCT_CATEGORIES} />
+        <MainCategoryList list={MAIN_CATEGORIES} />
         <Product.Scrollable title={`${user.name}님을 위해 준비한 상품`} />
         <Product.Slider title="지금 사면 ⚡️ 번쩍 할인" />
         <Product.List title="지금 뭐먹지?" />
