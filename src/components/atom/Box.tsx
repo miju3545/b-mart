@@ -1,30 +1,32 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren } from "react";
 
 type Props = {
-  display?: 'flex' | 'block' | 'inline-block' | 'inline-flex' | 'grid' | 'inline-grid' | 'none'
-  flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse'
-  justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between'
-  rowGap?: number
-  padding?: number
-  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
-  style?: React.CSSProperties
-}
+  display?: "flex" | "block" | "inline-block" | "inline-flex" | "grid" | "inline-grid" | "none";
+  alignItem?: "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
+  flexDirection?: "row" | "row-reverse" | "column" | "column-reverse";
+  justifyContent?: "flex-start" | "flex-end" | "center" | "space-between";
+  gap?: number;
+  padding?: number;
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  style?: React.CSSProperties;
+};
 
 export function Box({ children, style, onClick, ...rest }: PropsWithChildren<Props>) {
   const getStyle = () => {
-    const { display, flexDirection, justifyContent, rowGap = 0, padding = 0 } = rest
+    const { display, flexDirection, alignItem, justifyContent, gap = 0, padding = 0 } = rest;
     return {
       display,
       flexDirection,
+      alignItem,
       justifyContent,
-      rowGap: `${rowGap}px`,
-      padding: `${padding}px`,
-    }
-  }
+      gap: `${gap}px`,
+      padding: `${padding}px`
+    };
+  };
 
   return (
     <div style={{ ...getStyle(), ...style }} onClick={onClick}>
       {children}
     </div>
-  )
+  );
 }

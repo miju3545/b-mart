@@ -1,15 +1,15 @@
-import { SearchTab } from "@/components/block";
+import { MenuTab } from "@/components/block";
 import { SideTabContext } from "@/contexts/index";
 import React, { useContext, useEffect } from "react";
 
-export default function Search() {
+export default function Menu() {
   const { registerSideTab, clearSideTab } = useContext(SideTabContext);
 
   useEffect(() => {
-    registerSideTab(<SearchTab />);
+    registerSideTab(<MenuTab />);
 
     return clearSideTab;
   }, []);
 
-  return <div>검색 페이지</div>;
+  return <div>메뉴 페이지</div>;
 }

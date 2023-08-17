@@ -1,10 +1,4 @@
-import {
-  PropsWithChildren,
-  ReactNode,
-  createContext,
-  useRef,
-  useState,
-} from "react";
+import { PropsWithChildren, ReactNode, createContext, useRef, useState } from "react";
 
 type SideTabOptions = {
   onOpen?: () => void;
@@ -23,12 +17,10 @@ type SideTabContextType = {
   clearPrevPageURL: () => void;
 };
 
-export const SideTabContext = createContext(
-  false as unknown as SideTabContextType
-);
+export const SideTabContext = createContext(false as unknown as SideTabContextType);
 
 export const SideTabContextProvider = ({ children }: PropsWithChildren) => {
-  const [prevPageURL, setPrevPageURL] = useState("");
+  const [prevPageURL, setPrevPageURL] = useState("/");
   const [sideTab, setSideTab] = useState<ReactNode | null>(null);
   const [isSideTabOpened, setIsSideTabOpened] = useState(false);
 
@@ -59,8 +51,9 @@ export const SideTabContextProvider = ({ children }: PropsWithChildren) => {
         },
         prevPageURL,
         setPrevPageURL: (prevURL: string) => setPrevPageURL(prevURL),
-        clearPrevPageURL: () => setPrevPageURL(""),
-      }}>
+        clearPrevPageURL: () => setPrevPageURL("")
+      }}
+    >
       {children}
     </SideTabContext.Provider>
   );
