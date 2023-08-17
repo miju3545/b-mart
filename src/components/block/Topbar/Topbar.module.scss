@@ -5,7 +5,7 @@
   width: 100%;
   min-height: 50px;
   border-bottom: 1px solid gray;
-
+  align-items: center;
   > div {
     &:nth-child(1) {
       display: flex;

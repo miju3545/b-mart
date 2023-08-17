@@ -1,29 +1,33 @@
-import { DetailCategoryList } from "@/components/block/Category/DetailCategoryList";
+import { SubCategoryList } from "@/components/block/Category/SubCategoryList";
 import { Product } from "@/components/block/Product";
 import { Promotion } from "@/components/block/Promotion";
 import { Topbar } from "@/components/block/Topbar";
-import { MAIN_CATEGORIES } from "@/constants/mainCategories";
 import { SideTabContext } from "@/contexts/index";
+import { Category } from "@/lib/dto";
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
-
-const getCategoryTitle = (categoryId: number) => {
-  return MAIN_CATEGORIES.find((category) => category.id === categoryId)?.title;
-};
+import { useContext, useEffect, useState } from "react";
 
 export default function CategoryDetail() {
   const { query, asPath } = useRouter();
   const { setPrevPageURL } = useContext(SideTabContext);
+  const categoryId = Number(query.categoryId);
+  const [data, setData] = useState<Category>();
 
   useEffect(() => {
     setPrevPageURL(asPath);
   }, []);
 
+  useEffect(() => {
+    fetch(`/api/categories/${categoryId}`)
+      .then((res) => res.json())
+      .then((data) => setData(data.result));
+  }, []);
+
   return (
     <main>
-      <Topbar title={getCategoryTitle(Number(query.categoryId))} />
+      <Topbar title={data?.title} />
       <Promotion.Slider />
-      <DetailCategoryList list={[]} />
+      <SubCategoryList list={data?.subCategories || []} />
       <Product.Scrollable title="이 상품 어때요?" />
     </main>
   );

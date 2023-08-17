@@ -1,17 +1,24 @@
-import { MainCategoryList } from "@/components/block/Category/MainCateogoryList";
+import { MainCategoryList, MainCategoryProps } from "@/components/block/Category/MainCateogoryList";
 import { Gnb } from "@/components/block/Gnb";
 import { Product } from "@/components/block/Product";
 import { Promotion } from "@/components/block/Promotion";
-import { MAIN_CATEGORIES } from "@/constants/mainCategories";
 import { SideTabContext, UserContext } from "@/contexts/index";
-import { useContext, useEffect } from "react";
+import { Category } from "@/lib/dto";
+import { useContext, useEffect, useState } from "react";
 
 export default function Home() {
   const { user } = useContext(UserContext);
   const { setPrevPageURL } = useContext(SideTabContext);
+  const [mainCategories, setMainCategories] = useState<MainCategoryProps[]>([]);
 
   useEffect(() => {
     setPrevPageURL("/");
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/categories/main")
+      .then((res) => res.json())
+      .then((data) => setMainCategories(data.result));
   }, []);
 
   return (
@@ -20,7 +27,7 @@ export default function Home() {
       <div style={{ maxWidth: "1280px", margin: "auto" }}>
         {/* <div>땡겨요</div> */}
         <Promotion.Slider />
-        <MainCategoryList list={MAIN_CATEGORIES} />
+        <MainCategoryList list={mainCategories} />
         <Product.Scrollable title={`${user.name}님을 위해 준비한 상품`} />
         <Product.Slider title="지금 사면 ⚡️ 번쩍 할인" />
         <Product.List title="지금 뭐먹지?" />

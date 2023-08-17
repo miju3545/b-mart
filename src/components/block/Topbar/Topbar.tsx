@@ -4,10 +4,9 @@ import { MenuIcon } from "@/components/Icons/Menu";
 import { SearchIcon } from "@/components/Icons/Search";
 import Link from "next/link";
 import { Heading } from "@/components/atom/Heading";
-import { ReactNode, useContext } from "react";
+import { ReactNode } from "react";
 import { Box } from "@/components/atom/Box";
 import { IconButton } from "@/components/atom/IconButton";
-import { SideTabContext } from "@/contexts/index";
 import { useRouter } from "next/router";
 const cx = classNames.bind(style);
 
@@ -18,15 +17,11 @@ type Props = {
 
 export function Topbar({ title }: Props) {
   const router = useRouter();
-  // const { prevPageURL } = useContext(SideTabContext);
-  // const history = {
-  //   back: () => router.push(prevPageURL)
-  // };
 
   return (
-    <div className={cx("container")}>
+    <Box className={cx("container")}>
       <Box>
-        <IconButton icon="＜" onClick={() => router.push("/")} />
+        <IconButton icon="＜" onClick={router.back} />
       </Box>
       <Box>
         <Heading level={3}>{title}</Heading>
@@ -39,6 +34,6 @@ export function Topbar({ title }: Props) {
           <SearchIcon />
         </Link>
       </Box>
-    </div>
+    </Box>
   );
 }

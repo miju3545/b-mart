@@ -9,12 +9,22 @@ import {
   CartContextProvider,
   OrderListContextProvider,
   SideTabContextProvider,
-  ModalContextProvider,
+  ModalContextProvider
 } from "@/contexts/index";
 import { Layout } from "@/components/block";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [queryClient] = useState(new QueryClient());
+  const [queryClient] = useState(
+    new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: 1,
+          refetchOnWindowFocus: false,
+          useErrorBoundary: false
+        }
+      }
+    })
+  );
 
   return (
     <QueryClientProvider client={queryClient}>
