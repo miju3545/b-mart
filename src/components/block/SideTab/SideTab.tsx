@@ -1,6 +1,10 @@
-import React, { CSSProperties, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { Box } from "@/components/atom/Box";
 import { Heading } from "@/components/atom/Heading";
+import { IconButton } from "@/components/atom/IconButton";
+import style from "./SideTab.module.scss";
+import classNames from "classnames/bind";
+const cx = classNames.bind(style);
 
 type Props = {
   header?: ReactNode;
@@ -65,9 +69,11 @@ export function SideTab({
         }}
         onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => e.stopPropagation()}
       >
-        <Box display="flex" justifyContent="space-between">
-          <button onClick={onPrev}>prev button</button>
-          <Heading level={2}>{header}</Heading>
+        <Box className={cx("header")}>
+          <Box>
+            <IconButton icon="＜" onClick={onPrev} />
+          </Box>
+          {header && <Box>{header}</Box>}
         </Box>
         {children}
         {footer}

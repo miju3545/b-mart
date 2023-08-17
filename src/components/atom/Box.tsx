@@ -1,8 +1,8 @@
-import { PropsWithChildren } from "react";
+import { CSSProperties, PropsWithChildren } from "react";
 
 type Props = {
   display?: "flex" | "block" | "inline-block" | "inline-flex" | "grid" | "inline-grid" | "none";
-  alignItem?: "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
+  alignItems?: "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
   flexDirection?: "row" | "row-reverse" | "column" | "column-reverse";
   justifyContent?: "flex-start" | "flex-end" | "center" | "space-between";
   gap?: number;
@@ -17,17 +17,19 @@ type Props = {
 export function Box(props: PropsWithChildren<Props>) {
   const { children, style, onClick, className, ...rest } = props;
   const getStyle = () => {
-    const { display, flexDirection, alignItem, justifyContent, height, backgroundColor, gap = 0, padding = 0 } = rest;
-    return {
-      display,
-      flexDirection,
-      alignItem,
-      justifyContent,
-      gap: `${gap}px`,
-      padding: `${padding}px`,
-      height: height ? `${height}px` : "fit-content",
-      backgroundColor
-    };
+    const { display, flexDirection, alignItems, justifyContent, height, backgroundColor, gap, padding } = rest;
+    const css: CSSProperties = {};
+
+    display && (css["display"] = display);
+    flexDirection && (css["flexDirection"] = flexDirection);
+    alignItems && (css["alignItems"] = alignItems);
+    justifyContent && (css["justifyContent"] = justifyContent);
+    height && (css["height"] = `${height}px`);
+    backgroundColor && (css["backgroundColor"] = backgroundColor);
+    gap && (css["gap"] = `${gap}px`);
+    padding && (css["padding"] = `${padding}px`);
+
+    return css;
   };
 
   return (

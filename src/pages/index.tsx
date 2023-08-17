@@ -1,14 +1,16 @@
+import { Box } from "@/components/atom/Box";
+import { IconButton } from "@/components/atom/IconButton";
 import { MainCategoryList, MainCategoryProps } from "@/components/block/Category/MainCateogoryList";
 import { Gnb } from "@/components/block/Gnb";
 import { Product } from "@/components/block/Product";
 import { Promotion } from "@/components/block/Promotion";
+import { CartTab } from "@/components/block/SideTab/CartTab";
 import { SideTabContext, UserContext } from "@/contexts/index";
-import { Category } from "@/lib/dto";
 import { useContext, useEffect, useState } from "react";
 
 export default function Home() {
   const { user } = useContext(UserContext);
-  const { setPrevPageURL } = useContext(SideTabContext);
+  const { registerSideTab, setPrevPageURL } = useContext(SideTabContext);
   const [mainCategories, setMainCategories] = useState<MainCategoryProps[]>([]);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export default function Home() {
   return (
     <main>
       <Gnb />
-      <div style={{ maxWidth: "1280px", margin: "auto" }}>
+      <Box style={{ maxWidth: "1280px", margin: "auto", position: "relative" }}>
         {/* <div>땡겨요</div> */}
         <Promotion.Slider />
         <MainCategoryList list={mainCategories} />
@@ -41,7 +43,24 @@ export default function Home() {
             </span>
           }
         />
-      </div>
+        <IconButton
+          icon="장바구니 🛍️"
+          onClick={() => registerSideTab(<CartTab />)}
+          style={{
+            position: "fixed",
+            bottom: 10,
+            right: 10,
+            width: 60,
+            height: 60,
+            background: "gray",
+            borderRadius: "50%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center"
+          }}
+        />
+      </Box>
     </main>
   );
 }

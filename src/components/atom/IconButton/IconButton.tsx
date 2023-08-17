@@ -1,14 +1,28 @@
-import { HTMLAttributes } from "react";
+import Link from "next/link";
+import { CSSProperties, HTMLAttributes } from "react";
 
-type Props = HTMLAttributes<HTMLButtonElement> & {
+type Props = {
   icon: React.ReactNode;
   title?: string;
+  href?: string;
+  onClick?: () => void;
+  className?: string;
+  style?: CSSProperties;
 };
-export function IconButton({ icon, title, ...rest }: Props) {
+export function IconButton({ icon, title, href, style, ...rest }: Props) {
   return (
-    <button type="button" {...rest}>
-      {icon}
-      {title && <p>{title}</p>}
-    </button>
+    <>
+      {href !== undefined ? (
+        <Link href={href} style={style} {...rest}>
+          {icon}
+          {title && <p>{title}</p>}
+        </Link>
+      ) : (
+        <button type="button" style={style} {...rest}>
+          {icon}
+          {title && <p>{title}</p>}
+        </button>
+      )}
+    </>
   );
 }

@@ -1,9 +1,7 @@
-import classNames from "classnames/bind";
-import style from "./ProductScrollable.module.scss";
 import { ReactNode } from "react";
 import { Box } from "@/components/atom/Box";
 import { Heading } from "@/components/atom/Heading";
-const cx = classNames.bind(style);
+import { IconButton } from "@/components/atom/IconButton";
 
 type Props = {
   title: ReactNode;
@@ -12,13 +10,9 @@ type Props = {
 export function ProductScrollable({ title, hasViewMore = false }: Props) {
   return (
     <Box display="flex" flexDirection="column" gap={10} height={200} backgroundColor="lightGray">
-      <Box display="flex" justifyContent="space-between" alignItem="center">
+      <Box display="flex" justifyContent="space-between" alignItems="center">
         <Heading level={3}>{title}</Heading>
-        {hasViewMore && (
-          <button type="button" onClick={() => {}}>
-            더보기 ＞
-          </button>
-        )}
+        {hasViewMore && <IconButton icon="더보기 ＞" onClick={() => {}} />}
       </Box>
     </Box>
   );
