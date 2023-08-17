@@ -11,5 +11,5 @@ export default function Search() {
     return clearSideTab;
   }, []);
 
-  return <div>search</div>;
+  return <div>검색 페이지</div>;
 }

@@ -41,6 +41,7 @@ export const SideTabContextProvider = ({ children }: PropsWithChildren) => {
         isSideTabOpened,
         registerSideTab: (component, options) => {
           setSideTab(component);
+          setIsSideTabOpened(true);
           eventCallback.current = options;
         },
         // cleanup 용도로만 사용

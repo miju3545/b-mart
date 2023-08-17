@@ -8,7 +8,9 @@ import {
   WishListContextProvider,
   CartContextProvider,
   OrderListContextProvider,
-} from "@/contexts";
+  SideTabContextProvider,
+  ModalContextProvider,
+} from "@/contexts/index";
 import { Layout } from "@/components/block";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -16,17 +18,21 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <UserContextProvider>
-        <WishListContextProvider>
-          <CartContextProvider>
-            <OrderListContextProvider>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </OrderListContextProvider>
-          </CartContextProvider>
-        </WishListContextProvider>
-      </UserContextProvider>
+      <SideTabContextProvider>
+        <ModalContextProvider>
+          <UserContextProvider>
+            <WishListContextProvider>
+              <CartContextProvider>
+                <OrderListContextProvider>
+                  <Layout>
+                    <Component {...pageProps} />
+                  </Layout>
+                </OrderListContextProvider>
+              </CartContextProvider>
+            </WishListContextProvider>
+          </UserContextProvider>
+        </ModalContextProvider>
+      </SideTabContextProvider>
     </QueryClientProvider>
   );
 }

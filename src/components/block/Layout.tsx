@@ -1,15 +1,16 @@
-import { ModalContext, SideTabContext } from "@/contexts";
 import React, { PropsWithChildren, useContext } from "react";
+import { ModalContext, SideTabContext } from "@/contexts/index";
+import { Box } from "@/components/atom/Box";
 
 export function Layout({ children }: PropsWithChildren) {
   const { sideTab, isSideTabOpened } = useContext(SideTabContext);
   const { modal } = useContext(ModalContext);
 
   return (
-    <div>
+    <Box>
       {children}
       {isSideTabOpened && sideTab}
       {modal}
-    </div>
+    </Box>
   );
 }
