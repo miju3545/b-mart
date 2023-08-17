@@ -8,7 +8,7 @@ export function Layout({ children }: PropsWithChildren) {
 
   return (
     <Box>
-      {children}
+      <Box style={{ maxWidth: "1280px", margin: "auto", position: "relative" }}>{children}</Box>
       {isSideTabOpened && sideTab}
       {modal}
     </Box>

@@ -23,6 +23,7 @@ export default async function categoryId(req: NextApiRequest, res: NextApiRespon
           title: "포스트 콘프라이크",
           price: 4000,
           discountPrice: 0,
+          discountPercent: 0,
           categoryId: 4,
           imageUrl: "/"
         },
@@ -30,6 +31,7 @@ export default async function categoryId(req: NextApiRequest, res: NextApiRespon
           id: 1002,
           title: "브라운 브레드",
           discountPrice: 0,
+          discountPercent: 0,
           price: 4000,
           categoryId: 4,
           imageUrl: "/"
@@ -38,6 +40,7 @@ export default async function categoryId(req: NextApiRequest, res: NextApiRespon
           id: 1003,
           title: "오곡 책스초코",
           discountPrice: 0,
+          discountPercent: 0,
           price: 4000,
           categoryId: 4,
           imageUrl: "/"

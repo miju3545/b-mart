@@ -1,16 +1,16 @@
-import React, { ReactNode } from 'react'
-import { Box } from '../../atom/Box'
+import React, { ReactNode } from "react";
+import { Box } from "../../atom/Box";
 
 type Props = {
-  header?: ReactNode
-  children: React.ReactNode
-  footer?: ReactNode[]
-  onClose: () => void
-  hasBackground?: boolean
-  closeOnOutsideClick?: boolean
-  hasCloseButton?: boolean
-  position?: 'center' | 'left' | 'right'
-}
+  header?: ReactNode;
+  children: React.ReactNode;
+  footer?: ReactNode[];
+  onClose: () => void;
+  hasBackground?: boolean;
+  closeOnOutsideClick?: boolean;
+  hasCloseButton?: boolean;
+  position?: "center" | "left" | "right";
+};
 
 export function Modal({
   header,
@@ -20,13 +20,13 @@ export function Modal({
   hasBackground = true,
   closeOnOutsideClick = true,
   hasCloseButton = true,
-  position = 'center',
+  position = "center"
 }: Props) {
   // TODO: outside click, escape key click시 onClose 호출되도록 처리필요함
   return (
     // overlay
     <Box
-      style={hasBackground ? { backgroundColor: '#111' } : undefined}
+      style={hasBackground ? { backgroundColor: "#111", zIndex: 4 } : undefined}
       onClick={closeOnOutsideClick ? onClose : () => {}}
     >
       {/* inner content */}
@@ -43,5 +43,5 @@ export function Modal({
         <Box>{footer}</Box>
       </Box>
     </Box>
-  )
+  );
 }

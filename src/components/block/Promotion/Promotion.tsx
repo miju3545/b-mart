@@ -6,7 +6,7 @@ export function Promotion() {
 }
 function PromotionSlider() {
   return (
-    <Box display="flex" flexDirection="column" gap={10} height={200} backgroundColor="lightGray">
+    <Box display="flex" flexDirection="column" gap={10} height="200px" backgroundColor="lightGray">
       <Slider />
     </Box>
   );

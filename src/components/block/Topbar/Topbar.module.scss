@@ -2,10 +2,15 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 10px;
-  width: 100%;
+  width: 1280px;
   min-height: 50px;
   border-bottom: 1px solid gray;
   align-items: center;
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  z-index: 3;
+
   > div {
     &:nth-child(1) {
       display: flex;

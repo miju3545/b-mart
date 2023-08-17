@@ -54,7 +54,8 @@ export function SideTab({
         left: 0,
         right: 0,
         bottom: 0,
-        height: "100vh"
+        height: "100vh",
+        zIndex: 4
       }}
       backgroundColor={hasBackground ? "rgba(0,0,0,0.4)" : ""}
       onClick={closeOnOutsideClick ? onClose : () => {}}
@@ -62,7 +63,7 @@ export function SideTab({
       <Box
         style={{
           position: "absolute",
-          width: "600px",
+          width: "500px",
           backgroundColor: "#fff",
           height: "100vh",
           ...getInnerPosition()
