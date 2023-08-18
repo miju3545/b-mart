@@ -61,7 +61,7 @@ export default function CategoryDetail() {
         }}
       >
         <IconButton
-          icon={`장바구니 (${cart?.list.length}개)`}
+          icon={`장바구니 (${cart?.items.length}개)`}
           href="/cart"
           style={{
             width: 60,

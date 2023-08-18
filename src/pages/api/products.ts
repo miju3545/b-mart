@@ -15,7 +15,7 @@ const db = [
     discountPrice: 3600,
     discountPercent: 10,
     categoryId: 4,
-    imageUrl: "/"
+    imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
   },
   {
     id: 1002,
@@ -24,7 +24,7 @@ const db = [
     discountPercent: 0,
     price: 4000,
     categoryId: 4,
-    imageUrl: "/"
+    imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
   },
   {
     id: 1003,
@@ -33,7 +33,7 @@ const db = [
     discountPercent: 0,
     price: 4000,
     categoryId: 4,
-    imageUrl: "/"
+    imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
   },
   {
     id: 1004,
@@ -42,7 +42,7 @@ const db = [
     discountPrice: 3600,
     discountPercent: 10,
     categoryId: 4,
-    imageUrl: "/"
+    imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
   },
   {
     id: 1005,
@@ -51,7 +51,7 @@ const db = [
     discountPercent: 0,
     price: 4000,
     categoryId: 4,
-    imageUrl: "/"
+    imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
   },
   {
     id: 1006,
@@ -60,7 +60,7 @@ const db = [
     discountPercent: 0,
     price: 4000,
     categoryId: 4,
-    imageUrl: "/"
+    imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
   },
   {
     id: 1007,
@@ -69,7 +69,7 @@ const db = [
     discountPercent: 0,
     price: 4000,
     categoryId: 4,
-    imageUrl: "/"
+    imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
   },
   {
     id: 1008,
@@ -78,7 +78,7 @@ const db = [
     discountPercent: 0,
     price: 4000,
     categoryId: 4,
-    imageUrl: "/"
+    imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
   },
   {
     id: 1009,
@@ -87,7 +87,7 @@ const db = [
     discountPercent: 0,
     price: 4000,
     categoryId: 4,
-    imageUrl: "/"
+    imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
   }
 ];
 export default async function products(req: NextApiRequest, res: NextApiResponse<Data>) {

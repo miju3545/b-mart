@@ -6,5 +6,5 @@ export type CartProduct = Product & {
 
 export type Cart = {
   totalPrice: number;
-  list: CartProduct[] | [];
+  items: CartProduct[] | [];
 };

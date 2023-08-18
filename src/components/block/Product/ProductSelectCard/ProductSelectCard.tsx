@@ -5,6 +5,7 @@ import { ImageWithFallback } from "@/components/atom/ImageWithFallback";
 import { CartContext } from "@/contexts/index";
 import { useContext, useState } from "react";
 import { Box } from "@/components/atom/Box";
+import Link from "next/link";
 
 type Props = {
   product: CartProduct;
@@ -14,23 +15,27 @@ type Props = {
 export function ProductSelectCard({ product, onChange, checked }: Props) {
   const { id, title, imageUrl, price, discountPercent, discountPrice, quantity } = product;
   const [count, setCount] = useState(quantity);
-  const { updateCartItems, cart } = useContext(CartContext);
+  const { useUpdateCartItems, cart } = useContext(CartContext);
+  const { mutate } = useUpdateCartItems();
+
   const handleCountChange = (number: number) => {
     setCount(number);
-    updateCartItems(cart.list.map((item) => (item.id === id ? { ...item, quantity: number } : item)));
+    mutate(cart.items.map((item) => (item.id === id ? { ...item, quantity: number } : item)));
   };
 
   return (
     <Box width="100%" display="flex" flexDirection="column" gap={10} style={{ border: "1px solid gray" }}>
       <Box>
-        <Heading level={2}>{title}</Heading>
+        <Heading level={2}>
+          <Link href={`/products/${id}`}>{title}</Link>
+        </Heading>
       </Box>
       <Box display="flex" justifyContent="space-between" alignItems="center" gap={5} width="100%">
         <label style={{ display: "flex" }}>
           <input type="checkbox" onChange={onChange} checked={checked} />
           <Heading level={4}>{title}</Heading>
         </label>
-        <button type="button" onClick={() => updateCartItems(cart.list.filter((item) => item.id !== id))}>
+        <button type="button" onClick={() => mutate(cart.items.filter((item) => item.id !== id))}>
           삭제
         </button>
       </Box>

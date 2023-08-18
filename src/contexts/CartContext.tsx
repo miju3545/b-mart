@@ -1,33 +1,46 @@
+import { useSelect } from "@/hooks/useSelect";
 import { Cart } from "@/lib/dto/cart";
+import { clear } from "console";
 import { PropsWithChildren, createContext, useEffect, useReducer, useState } from "react";
 
 type CartContextType = {
   cart: Cart;
-  isLoading: boolean;
-  updateCartItems: (cartItems: Cart["list"]) => void;
+  useUpdateCartItems: () => { mutate: (currentCart: Cart["items"]) => Promise<unknown> };
+  currentPrice: number;
+  setCurrentPrice: (price: number) => void;
 };
 
 export const CartContext = createContext(false as unknown as CartContextType);
 
 export const CartContextProvider = ({ children }: PropsWithChildren) => {
-  const [cart, setCart] = useState<CartContextType["cart"]>({ totalPrice: 0, list: [] });
-  const [isLoading, setIsLoading] = useState(false);
-  const [rending, rerender] = useReducer((prev) => !prev, false);
+  const [cart, setCart] = useState<Cart>({ totalPrice: 0, items: [] });
+  const [currentPrice, setCurrentPrice] = useState(0);
+  const [render, rerender] = useReducer((prev) => !prev, false);
 
-  const updateCartItems = async (currentCart: Cart["list"]) => {
-    const res = await fetch("/api/cart", { method: "PUT", body: JSON.stringify(currentCart) });
-    const data = res.json();
-    rerender();
-    return data;
+  // TODO: hooks으로 변경할 것
+  const useUpdateCartItems = () => {
+    return {
+      mutate: async (currentCart: Cart["items"]) => {
+        const res = await fetch("/api/cart", { method: "PUT", body: JSON.stringify(currentCart) });
+        const data = res.json();
+        rerender();
+        return data;
+      }
+    };
   };
 
   useEffect(() => {
-    setIsLoading(true);
     fetch("/api/cart")
       .then((res) => res.json())
-      .then((data) => setCart(data.result))
-      .finally(() => setIsLoading(false));
-  }, [rending]);
+      .then((data) => {
+        setCart(data.result);
+        setCurrentPrice(data.result.totalPrice);
+      });
+  }, [render]);
 
-  return <CartContext.Provider value={{ cart, isLoading, updateCartItems }}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={{ cart, useUpdateCartItems, currentPrice, setCurrentPrice }}>
+      {children}
+    </CartContext.Provider>
+  );
 };

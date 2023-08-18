@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 
+type SelectType = { [key: number | string]: boolean };
 export const useSelect = <T extends { id: number }>(list: Array<T>) => {
-  const [checked, setChecked] = useState<{ [key: number]: boolean }>({});
-  const [checkedAll, setCheckedAll] = useState(false);
+  const [checked, setChecked] = useState<SelectType>({});
 
-  const toggleChecked = (key: number) => {
+  const toggleSelected = (key: number) => {
     setChecked((prev) => ({ ...prev, [key]: !prev[key] ? true : false }));
   };
 
   useEffect(() => {
-    setChecked(list.reduce((acc, cur) => ({ ...acc, [cur.id]: false }), {}));
-  }, [list]);
+    setChecked(list.reduce((acc, cur) => ({ ...acc, [cur.id]: true }), {}));
+  }, [list.length]);
 
-  useEffect(() => {
-    const isCheckedAll = Object.values(checked).every((value) => value);
-    setCheckedAll(isCheckedAll);
-  }, [checked]);
+  const selected: SelectType = {
+    all: list.length > 0 && Object.values(checked).every((v) => v === true),
+    ...checked
+  };
 
-  useEffect(() => {
-    setChecked(list.reduce((acc, cur) => ({ ...acc, [cur.id]: checkedAll }), {}));
-  }, [checkedAll]);
-
-  return { checked, toggleChecked, checkedAll, toggleCheckedAll: () => setCheckedAll((prev) => !prev) };
+  return {
+    selected,
+    toggleSelected,
+    toggleSelectedAll: () => setChecked(list.reduce((acc, cur) => ({ ...acc, [cur.id]: !selected.all }), {}))
+  };
 };
