@@ -16,8 +16,8 @@ export default function CategoryDetail() {
   const router = useRouter();
   const { registerSideTab, setPrevPageURL } = useContext(SideTabContext);
   const { cart } = useContext(CartContext);
-  const categoryId = Number(router.query.categoryId);
-  const [categories, setCategories] = useState<Category>();
+  const categoryId = router.query.categoryId;
+  const [cateogory, setCategory] = useState<Category>();
   const [products, setProducts] = useState<ProductDto[]>([]);
 
   useEffect(() => {
@@ -25,19 +25,20 @@ export default function CategoryDetail() {
   }, []);
 
   useEffect(() => {
+    if (!categoryId) return;
     fetch(`/api/categories/${categoryId}`)
       .then((res) => res.json())
-      .then((data) => setCategories(data.result));
+      .then((data) => setCategory(data.result));
 
     fetch("/api/products")
       .then((res) => res.json())
       .then((data) => setProducts(data.result));
-  }, []);
+  }, [categoryId]);
 
   return (
     <Box>
       <Topbar
-        title={categories?.title}
+        title={cateogory?.title || " "}
         onPrev={router.back}
         trailingIcons={[
           <IconButton icon={<SearchIcon />} onClick={() => registerSideTab(<SearchTab />)} />,
@@ -46,7 +47,7 @@ export default function CategoryDetail() {
       />
       <Box className="main-content">
         <Promotion.Slider />
-        <SubCategoryList list={categories?.subCategories || []} />
+        <SubCategoryList list={cateogory?.subCategories || []} />
         <Product.Scrollable title="이 상품 어때요?" list={products} />
         <Product.List list={products} col={3} />
       </Box>
