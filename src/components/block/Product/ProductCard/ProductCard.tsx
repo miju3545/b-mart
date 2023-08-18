@@ -23,7 +23,7 @@ export function ProductCard(props: Props) {
   } = props;
 
   const getSize = () => {
-    switch (props.size) {
+    switch (size) {
       case "sm":
         return { width: 150, height: 150 };
       case "md":
@@ -34,7 +34,7 @@ export function ProductCard(props: Props) {
   };
 
   return (
-    <Box display="flex" flexDirection="column" width="100%">
+    <Box display="flex" flexDirection="column" width="100%" style={{ border: "1px solid gray" }}>
       <Box width="100%" height="100%" style={{ position: "relative" }}>
         <ImageWithFallback src={imageUrl} alt={title} {...getSize()} layout={responsive ? "responsive" : "intrinsic"} />
         <IconButton icon="찜" onClick={() => {}} style={{ position: "absolute", bottom: 10, right: 10 }} />

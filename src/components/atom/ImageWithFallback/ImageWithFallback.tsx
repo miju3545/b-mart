@@ -5,14 +5,19 @@ type Props = ImageProps & {
   fallbackSrc?: string;
 };
 
-export function ImageWithFallback({ fallbackSrc, ...rest }: Props) {
+export function ImageWithFallback(props: Props) {
+  const {
+    fallbackSrc = "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==",
+    ...rest
+  } = props;
   return (
-    // <Box backgroundColor="gray" width="100%" height="100%">
-    <NextImage
-      {...rest}
-      style={{ width: "100%", height: "100%", display: "block", background: "red" }}
-      blurDataURL={fallbackSrc}
-    />
-    // </Box>
+    <Box>
+      <NextImage
+        {...rest}
+        style={{ width: "100%", height: "100%", display: "block" }}
+        placeholder="blur"
+        blurDataURL={fallbackSrc}
+      />
+    </Box>
   );
 }
