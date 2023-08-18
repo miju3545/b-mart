@@ -4,10 +4,11 @@ import { Heading } from "@/components/atom/Heading";
 import { IconButton } from "@/components/atom/IconButton";
 import style from "./SideTab.module.scss";
 import classNames from "classnames/bind";
+import { Topbar } from "../Topbar";
 const cx = classNames.bind(style);
 
 type Props = {
-  header?: ReactNode;
+  title?: ReactNode;
   children: React.ReactNode;
   footer?: ReactNode[];
   onClose: () => void;
@@ -18,7 +19,7 @@ type Props = {
 };
 
 export function SideTab({
-  header,
+  title,
   children,
   footer,
   onClose,
@@ -31,19 +32,8 @@ export function SideTab({
   // TODO: onClose 시 애니메이션 처리 필요함
 
   const getInnerPosition = () => {
-    switch (position) {
-      case "left": {
-        return {
-          left: 0
-        };
-      }
-      case "right":
-      default: {
-        return {
-          right: 0
-        };
-      }
-    }
+    if (position === "left") return { left: 0 };
+    if (position === "right") return { right: 0 };
   };
 
   return (
@@ -70,12 +60,7 @@ export function SideTab({
         }}
         onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => e.stopPropagation()}
       >
-        <Box className={cx("header")}>
-          <Box>
-            <IconButton icon="＜" onClick={onPrev} />
-          </Box>
-          {header && <Box>{header}</Box>}
-        </Box>
+        <Topbar title={title} onPrev={onPrev} />
         {children}
         {footer}
       </Box>

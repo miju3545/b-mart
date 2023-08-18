@@ -11,13 +11,11 @@ export function ImageWithFallback(props: Props) {
     ...rest
   } = props;
   return (
-    <Box>
-      <NextImage
-        {...rest}
-        style={{ width: "100%", height: "100%", display: "block" }}
-        placeholder="blur"
-        blurDataURL={fallbackSrc}
-      />
-    </Box>
+    <NextImage
+      {...rest}
+      style={{ width: "100%", height: "100%", display: "block", ...rest.style }}
+      placeholder="blur"
+      blurDataURL={fallbackSrc}
+    />
   );
 }

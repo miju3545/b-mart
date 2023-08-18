@@ -1,6 +1,9 @@
+@import "@/styles/variables.scss";
+
 .container {
-  width: 1280px;
-  min-height: 50px;
+  width: 100%;
+  max-width: $layout-max-width;
+  height: $topbar-height;
   display: flex;
   justify-content: flex-end;
   align-items: center;

@@ -1,9 +1,11 @@
+import { MenuIcon } from "@/components/Icons/Menu";
+import { SearchIcon } from "@/components/Icons/Search";
 import { Box } from "@/components/atom/Box";
 import { IconButton } from "@/components/atom/IconButton";
+import { MenuTab, SearchTab } from "@/components/block";
 import { SubCategoryList } from "@/components/block/Category/SubCategoryList";
 import { Product } from "@/components/block/Product";
 import { Promotion } from "@/components/block/Promotion";
-import { CartTab } from "@/components/block/SideTab/CartTab";
 import { Topbar } from "@/components/block/Topbar";
 import { SideTabContext } from "@/contexts/index";
 import { Category, Product as ProductDto } from "@/lib/dto";
@@ -33,14 +35,23 @@ export default function CategoryDetail() {
 
   return (
     <Box>
-      <Topbar title={data?.title} onPrev={router.back} />
-      <Promotion.Slider />
-      <SubCategoryList list={data?.subCategories || []} />
-      <Product.Scrollable title="이 상품 어때요?" list={products} />
-      <Product.List list={products} col={3} />
+      <Topbar
+        title={data?.title}
+        onPrev={router.back}
+        trailingIcons={[
+          <IconButton icon={<SearchIcon />} onClick={() => registerSideTab(<SearchTab />)} />,
+          <IconButton icon={<MenuIcon />} onClick={() => registerSideTab(<MenuTab />)} />
+        ]}
+      />
+      <Box className="main-content">
+        <Promotion.Slider />
+        <SubCategoryList list={data?.subCategories || []} />
+        <Product.Scrollable title="이 상품 어때요?" list={products} />
+        <Product.List list={products} col={3} />
+      </Box>
       <IconButton
         icon="장바구니 🛍️"
-        onClick={() => registerSideTab(<CartTab />)}
+        href="/cart"
         style={{
           position: "fixed",
           bottom: 10,

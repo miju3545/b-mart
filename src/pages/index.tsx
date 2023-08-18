@@ -4,7 +4,6 @@ import { MainCategoryList, MainCategoryProps } from "@/components/block/Category
 import { Gnb } from "@/components/block/Gnb";
 import { Product } from "@/components/block/Product";
 import { Promotion } from "@/components/block/Promotion";
-import { CartTab } from "@/components/block/SideTab/CartTab";
 import { SideTabContext, UserContext } from "@/contexts/index";
 import { Product as ProductDto } from "@/lib/dto";
 import { useContext, useEffect, useState } from "react";
@@ -32,7 +31,7 @@ export default function Home() {
     <Box>
       <Gnb />
       {/* <div>땡겨요</div> */}
-      <Box display="flex" flexDirection="column" gap={20}>
+      <Box display="flex" flexDirection="column" gap={20} className="main-content">
         <Promotion.Slider />
         <MainCategoryList list={mainCategories} />
         <Product.Scrollable title={`${user.name}님을 위해 준비한 상품`} list={products} />
@@ -52,7 +51,7 @@ export default function Home() {
       </Box>
       <IconButton
         icon="장바구니 🛍️"
-        onClick={() => registerSideTab(<CartTab />)}
+        href="/cart"
         style={{
           position: "fixed",
           bottom: 10,

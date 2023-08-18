@@ -20,8 +20,8 @@ export function Gnb() {
         <Logo />
       </Link>
       <Box className={cx("tabs")}>
-        <IconButton icon={<MenuIcon />} onClick={() => registerSideTab(<MenuTab />)} className={cx("tab-icon")} />
         <IconButton icon={<SearchIcon />} onClick={() => registerSideTab(<SearchTab />)} className={cx("tab-icon")} />
+        <IconButton icon={<MenuIcon />} onClick={() => registerSideTab(<MenuTab />)} className={cx("tab-icon")} />
       </Box>
     </Box>
   );

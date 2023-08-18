@@ -6,7 +6,7 @@ export function SearchTab() {
   const { hideSideTab } = useContext(SideTabContext);
 
   return (
-    <SideTab header="검색" onPrev={hideSideTab} onClose={hideSideTab}>
+    <SideTab title="검색" onPrev={hideSideTab} onClose={hideSideTab}>
       <div>내용</div>
     </SideTab>
   );
