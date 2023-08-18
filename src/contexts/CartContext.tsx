@@ -1,6 +1,4 @@
-import { useSelect } from "@/hooks/useSelect";
 import { Cart } from "@/lib/dto/cart";
-import { clear } from "console";
 import { PropsWithChildren, createContext, useEffect, useReducer, useState } from "react";
 
 type CartContextType = {

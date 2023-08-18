@@ -18,8 +18,7 @@ export default async function categories(req: NextApiRequest, res: NextApiRespon
       { id: 5, title: "분식﹒야식", imageUrl: "/" },
       { id: 6, title: "과자﹒초콜릿", imageUrl: "/" },
       { id: 7, title: "아이스크림", imageUrl: "/" },
-      { id: 8, title: "헤어﹒바디﹒로션", imageUrl: "/" },
-      { id: 9, title: "더보기", imageUrl: "/" }
+      { id: 8, title: "헤어﹒바디﹒로션", imageUrl: "/" }
     ];
 
     res.status(200).json({ status: 200, result });

@@ -6,22 +6,25 @@ const cx = classNames.bind(style);
 
 type Props = {
   list: SubCategory[];
+  onClickItem?: () => void;
 };
 
-export function SubCategoryList({ list }: Props) {
+export function SubCategoryList({ list, onClickItem = () => {} }: Props) {
   return (
     <ul className={cx("category-list")}>
       {list.map((category) => (
-        <SubCategoryItem key={category.title} {...category} />
+        <SubCategoryItem key={category.title} {...category} onClick={onClickItem} />
       ))}
     </ul>
   );
 }
 
-export function SubCategoryItem({ id, title }: SubCategory) {
+export function SubCategoryItem({ id, title, onClick }: SubCategory & { onClick: () => void }) {
   return (
     <li className={cx("category-item")}>
-      <Link href={`/categories/${id}`}>{title}</Link>
+      <Link href={`/categories/${id}`} onClick={onClick}>
+        {title}
+      </Link>
     </li>
   );
 }

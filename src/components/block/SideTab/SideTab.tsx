@@ -61,7 +61,7 @@ export function SideTab({
         onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => e.stopPropagation()}
       >
         <Topbar title={title} onPrev={onPrev} />
-        {children}
+        <Box className="main-content">{children}</Box>
         {footer}
       </Box>
     </Box>
