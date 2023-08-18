@@ -4,13 +4,14 @@ import { MainCategoryList, MainCategoryProps } from "@/components/block/Category
 import { Gnb } from "@/components/block/Gnb";
 import { Product } from "@/components/block/Product";
 import { Promotion } from "@/components/block/Promotion";
-import { SideTabContext, UserContext } from "@/contexts/index";
+import { CartContext, SideTabContext, UserContext } from "@/contexts/index";
 import { Product as ProductDto } from "@/lib/dto";
 import { useContext, useEffect, useState } from "react";
 
 export default function Home() {
   const { user } = useContext(UserContext);
-  const { registerSideTab, setPrevPageURL } = useContext(SideTabContext);
+  const { setPrevPageURL } = useContext(SideTabContext);
+  const { cart } = useContext(CartContext);
   const [mainCategories, setMainCategories] = useState<MainCategoryProps[]>([]);
   const [products, setProducts] = useState<ProductDto[]>([]);
 
@@ -38,34 +39,42 @@ export default function Home() {
         <Product.Slider title="지금 사면 ⚡️ 번쩍 할인" list={products} />
         <Product.List title="지금 뭐먹지?" list={products} />
         <Product.List title="지금 필요한 생필품?" list={products} />
-        <Product.Scrollable title="새로 나왔어요" hasViewMore list={products} />
-        <Product.Scrollable title="요즘 잘팔려요" hasViewMore list={products} />
+        <Product.Scrollable title="새로 나왔어요" list={products} hasViewMore />
+        <Product.Scrollable title="요즘 잘팔려요" list={products} hasViewMore />
         <Product.FlagShip
           title={
-            <span>
+            <>
               <strong>번쩍하면 배달오는</strong> B마트 대표상품
-            </span>
+            </>
           }
           list={products}
         />
       </Box>
-      <IconButton
-        icon="장바구니 🛍️"
-        href="/cart"
+      <Box
         style={{
           position: "fixed",
-          bottom: 10,
-          right: 10,
-          width: 60,
-          height: 60,
-          background: "gray",
-          borderRadius: "50%",
+          bottom: 0,
+          width: "1280px",
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center"
+          justifyContent: "flex-end",
+          transform: "translate(-10px,-10px)"
         }}
-      />
+      >
+        <IconButton
+          icon={`장바구니 (${cart?.list.length}개)`}
+          href="/cart"
+          style={{
+            width: 60,
+            height: 60,
+            background: "gray",
+            borderRadius: "50%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center"
+          }}
+        />
+      </Box>
     </Box>
   );
 }

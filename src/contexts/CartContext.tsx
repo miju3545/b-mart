@@ -4,7 +4,7 @@ import { PropsWithChildren, createContext, useEffect, useReducer, useState } fro
 type CartContextType = {
   cart: Cart;
   isLoading: boolean;
-  updateCartItems: (currentCart: Cart["list"]) => void;
+  updateCartItems: (cartItems: Cart["list"]) => void;
 };
 
 export const CartContext = createContext(false as unknown as CartContextType);

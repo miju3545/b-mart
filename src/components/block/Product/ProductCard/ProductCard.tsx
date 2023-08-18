@@ -45,8 +45,8 @@ export function ProductCard(props: Props) {
         </Heading>
         <Box>
           {discountPercent > 0 && <span>{discountPercent}%</span>}
-          {discountPrice > 0 && <del>{discountPrice}</del>}
-          <strong>{price}</strong>
+          {discountPrice > 0 && <del>{price}</del>}
+          <strong>{discountPrice}</strong>
         </Box>
       </Box>
     </Box>
