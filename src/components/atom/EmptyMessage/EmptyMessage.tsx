@@ -2,5 +2,9 @@ import { PropsWithChildren } from "react";
 import { Box } from "../Box";
 
 export function EmptyMessage({ children }: PropsWithChildren) {
-  return <Box>{children}</Box>;
+  return (
+    <Box display="flex" justifyContent="center" width="100%">
+      {children}
+    </Box>
+  );
 }

@@ -6,18 +6,19 @@ import { IconButton } from "@/components/atom/IconButton";
 import { SearchList } from "../../Category/SearchList";
 import { SearchHistoryList } from "../../Category/SearchHistoryList";
 import { useForceRender } from "@/hooks/useForceRender";
+import { useInput } from "@/hooks/useInput";
 
 export function SearchTab() {
   const { hideSideTab } = useContext(SideTabContext);
   const [searchList, setSearchList] = useState<string[]>([]);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
-  const [keyword, setKeyword] = useState("");
+  const { value: keyword, onChange: onChangeKeyword, clearValue: clearKeyword } = useInput("");
   const { renderFlag, forceRender } = useForceRender();
   const handleSearch = () => {
     fetch(`/api/search?keyword=${keyword}`)
       .then((res) => res.json())
       .then((data) => setSearchList(data.result))
-      .finally(() => setKeyword(""));
+      .finally(clearKeyword);
   };
 
   const handleDeleteSearchHistory = (title: string | string[]) => {
@@ -37,12 +38,11 @@ export function SearchTab() {
       title={
         <input
           type="search"
+          name="keyword"
           value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
+          onChange={onChangeKeyword}
           onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              handleSearch();
-            }
+            e.key === "Enter" && handleSearch();
           }}
           style={{ width: "300px" }}
         />
