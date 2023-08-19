@@ -1,10 +1,10 @@
-.category-list {
+.search-list {
   > li:not(:last-child) {
     border-bottom: 1px solid gray;
   }
 }
 
-.category-item {
+.search-item {
   display: flex;
   justify-content: space-between;
   align-items: center;

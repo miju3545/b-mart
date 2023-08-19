@@ -53,7 +53,7 @@ export function SearchTab() {
       onClose={hideSideTab}
     >
       <SearchList list={searchList} />
-      <SearchHistoryList title="최근 검색어" list={searchHistory} onDelete={handleDeleteSearchHistory} />
+      <SearchHistoryList list={searchHistory} onDelete={handleDeleteSearchHistory} />
     </SideTab>
   );
 }

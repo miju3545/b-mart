@@ -9,15 +9,14 @@ import { EmptyMessage } from "@/components/atom/EmptyMessage";
 const cx = classNames.bind(style);
 
 type Props = {
-  title: string;
   list: string[];
   onDelete?: (item: string | string[]) => void;
 };
 
-export function SearchHistoryList({ title, list, onDelete }: Props) {
+export function SearchHistoryList({ list, onDelete }: Props) {
   return (
     <Box>
-      <Heading level={3}>{title}</Heading>
+      <Heading level={3}>최근 검색어</Heading>
       {list.length === 0 && <EmptyMessage>최근 검색어가 없습니다.</EmptyMessage>}
       {list.length > 0 && (
         <>

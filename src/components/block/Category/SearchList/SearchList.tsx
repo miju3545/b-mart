@@ -5,22 +5,21 @@ const cx = classNames.bind(style);
 
 type Props = {
   list: string[];
-  onClickItem?: () => void;
 };
 
-export function SearchList({ list, onClickItem = () => {} }: Props) {
+export function SearchList({ list }: Props) {
   return (
-    <ul className={cx("category-list")}>
+    <ul className={cx("search-list")}>
       {list.map((item) => (
-        <SearchItem key={item} title={item} onClick={onClickItem} />
+        <SearchItem key={item} title={item} />
       ))}
     </ul>
   );
 }
 
-export function SearchItem({ title, onClick }: { title: string; onClick: () => void }) {
+export function SearchItem({ title }: { title: string }) {
   return (
-    <li className={cx("category-item")}>
+    <li className={cx("search-item")}>
       <Link
         href={{
           pathname: "/",
