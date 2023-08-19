@@ -1,3 +1,4 @@
+import { useForceRender } from "@/hooks/useForceRender";
 import { Cart } from "@/lib/dto/cart";
 import { PropsWithChildren, createContext, useEffect, useReducer, useState } from "react";
 
@@ -13,7 +14,7 @@ export const CartContext = createContext(false as unknown as CartContextType);
 export const CartContextProvider = ({ children }: PropsWithChildren) => {
   const [cart, setCart] = useState<Cart>({ totalPrice: 0, items: [] });
   const [currentPrice, setCurrentPrice] = useState(0);
-  const [render, rerender] = useReducer((prev) => !prev, false);
+  const { renderFlag, forceRender } = useForceRender();
 
   // TODO: hooks으로 변경할 것
   const useUpdateCartItems = () => {
@@ -21,7 +22,7 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
       mutate: async (currentCart: Cart["items"]) => {
         const res = await fetch("/api/cart", { method: "PUT", body: JSON.stringify(currentCart) });
         const data = res.json();
-        rerender();
+        forceRender();
         return data;
       }
     };
@@ -34,7 +35,7 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
         setCart(data.result);
         setCurrentPrice(data.result.totalPrice);
       });
-  }, [render]);
+  }, [renderFlag]);
 
   return (
     <CartContext.Provider value={{ cart, useUpdateCartItems, currentPrice, setCurrentPrice }}>

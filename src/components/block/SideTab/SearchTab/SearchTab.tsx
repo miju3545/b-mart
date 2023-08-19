@@ -14,6 +14,7 @@ export function SearchTab() {
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
   const { value: keyword, onChange: onChangeKeyword, clearValue: clearKeyword } = useInput("");
   const { renderFlag, forceRender } = useForceRender();
+
   const handleSearch = () => {
     fetch(`/api/search?keyword=${keyword}`)
       .then((res) => res.json())
