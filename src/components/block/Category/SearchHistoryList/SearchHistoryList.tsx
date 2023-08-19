@@ -5,23 +5,30 @@ import { Heading } from "@/components/atom/Heading";
 import Link from "next/link";
 import { useContext } from "react";
 import { SideTabContext } from "@/contexts/index";
+import { EmptyMessage } from "@/components/atom/EmptyMessage";
 const cx = classNames.bind(style);
 
 type Props = {
   title: string;
   list: string[];
-  onDelete?: (item: string) => void;
+  onDelete?: (item: string | string[]) => void;
 };
 
-export function SearchHistoryList({ title, list, onDelete = () => {} }: Props) {
+export function SearchHistoryList({ title, list, onDelete }: Props) {
   return (
     <Box>
       <Heading level={3}>{title}</Heading>
-      <ul className={cx("history-list")}>
-        {list.map((item) => (
-          <SearchHistoryItem key={item} title={item} onDelete={() => onDelete(item)} />
-        ))}
-      </ul>
+      {list.length === 0 && <EmptyMessage>최근 검색어가 없습니다.</EmptyMessage>}
+      {list.length > 0 && (
+        <>
+          <ul className={cx("history-list")}>
+            {list?.map((item) => <SearchHistoryItem key={item} title={item} onDelete={() => onDelete?.(item)} />)}
+          </ul>
+          <button type="button" onClick={() => onDelete?.(list)}>
+            전체 삭제
+          </button>
+        </>
+      )}
     </Box>
   );
 }

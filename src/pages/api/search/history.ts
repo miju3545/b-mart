@@ -12,7 +12,9 @@ export default async function searchHistory(req: NextApiRequest, res: NextApiRes
   }
 
   if (req.method === "DELETE") {
-    history.search = history.search.filter((item) => item !== req.body);
+    const keyword = JSON.parse(req.body).keyword;
+    const historyList = Array.isArray(keyword) ? keyword : [keyword];
+    history.search = history.search.filter((item) => !historyList.includes(item));
     res.status(200).json({ status: 200, result: history.search });
   }
 }

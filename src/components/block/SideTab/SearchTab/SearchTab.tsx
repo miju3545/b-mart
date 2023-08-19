@@ -20,8 +20,8 @@ export function SearchTab() {
       .finally(() => setKeyword(""));
   };
 
-  const handleDeleteSearchHistory = (title: string) => {
-    fetch(`/api/search/history`, { method: "DELETE", body: title })
+  const handleDeleteSearchHistory = (title: string | string[]) => {
+    fetch(`/api/search/history`, { method: "DELETE", body: JSON.stringify({ keyword: title }) })
       .then((res) => res.json())
       .finally(forceRender);
   };
