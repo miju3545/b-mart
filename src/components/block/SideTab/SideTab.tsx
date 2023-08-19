@@ -1,9 +1,8 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
 import { Box } from "@/components/atom/Box";
-import style from "./SideTab.module.scss";
-import classNames from "classnames/bind";
 import { SideTabTopbar } from "../SideTabTopbar";
-const cx = classNames.bind(style);
+import { SideTabContext } from "@/contexts/index";
+import { animated, useSpring } from "react-spring";
 
 type Props = {
   title?: ReactNode;
@@ -29,12 +28,43 @@ export function SideTab({
   position = "right"
 }: Props) {
   // TODO: outside click, escape key click시 onClose 호출되도록 처리필요함
-  // TODO: onClose 시 애니메이션 처리 필요함
-
   const getInnerPosition = () => {
     if (position === "left") return { left: 0 };
     if (position === "right") return { right: 0 };
   };
+
+  const { isSideTabOpened } = useContext(SideTabContext);
+  const [animatedStyle] = useSpring<{
+    width?: string;
+  }>(
+    {
+      from: isSideTabOpened
+        ? {
+            width: "0px",
+            minWidth: "0px",
+            maxWidth: "0px"
+          }
+        : {
+            width: "500px",
+            minWidth: "500px",
+            maxWidth: "500px"
+          },
+      to: isSideTabOpened
+        ? {
+            width: "500px",
+            minWidth: "500px",
+            maxWidth: "500px"
+          }
+        : {
+            width: "0px",
+            minWidth: "0px",
+            maxWidth: "0px"
+          },
+      delay: 0,
+      immediate: false
+    },
+    [isSideTabOpened]
+  );
 
   return (
     <Box
@@ -50,20 +80,22 @@ export function SideTab({
       backgroundColor={hasBackground ? "rgba(0,0,0,0.4)" : ""}
       onClick={closeOnOutsideClick ? onClose : () => {}}
     >
-      <Box
+      <animated.div
         style={{
+          ...animatedStyle,
           position: "absolute",
-          width: "500px",
-          backgroundColor: "#fff",
           height: "100vh",
+          overflow: "hidden",
+          backgroundColor: "#fff",
           ...getInnerPosition()
         }}
-        onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => e.stopPropagation()}
       >
-        <SideTabTopbar title={title} onPrev={onPrev} trailingIcons={trailingIcons} />
-        <Box className="main-content">{children}</Box>
-        {footer}
-      </Box>
+        <Box onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => e.stopPropagation()}>
+          <SideTabTopbar title={title} onPrev={onPrev} trailingIcons={trailingIcons} />
+          <Box className="main-content">{children}</Box>
+          {footer}
+        </Box>
+      </animated.div>
     </Box>
   );
 }
