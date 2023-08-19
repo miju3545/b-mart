@@ -1,3 +1,4 @@
+import { SideTab } from "@/components/block/SideTab";
 import { PropsWithChildren, ReactNode, createContext, useRef, useState } from "react";
 
 type SideTabOptions = {

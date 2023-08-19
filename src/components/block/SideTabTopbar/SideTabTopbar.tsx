@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import style from "./Topbar.module.scss";
+import style from "./SideTabTopbar.module.scss";
 import { Fragment, PropsWithChildren, ReactNode } from "react";
 import { Box } from "@/components/atom/Box";
 import { IconButton } from "@/components/atom/IconButton";
@@ -11,7 +11,7 @@ type Props = {
   trailingIcons?: ReactNode | ReactNode[];
 };
 
-export function Topbar({ title, onPrev, trailingIcons }: PropsWithChildren<Props>) {
+export function SideTabTopbar({ title, onPrev, trailingIcons }: PropsWithChildren<Props>) {
   const trailingIconArray = Array.isArray(trailingIcons) ? trailingIcons : [trailingIcons];
 
   return (

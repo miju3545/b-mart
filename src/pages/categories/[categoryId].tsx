@@ -38,12 +38,12 @@ export default function CategoryDetail() {
   return (
     <Box>
       <Topbar
-        title={cateogory?.title || " "}
-        onPrev={router.back}
+        title={cateogory?.title}
         trailingIcons={[
           <IconButton icon={<SearchIcon />} onClick={() => registerSideTab(<SearchTab />)} />,
           <IconButton icon={<MenuIcon />} onClick={() => registerSideTab(<MenuTab />)} />
         ]}
+        onPrev={router.back}
       />
       <Box className="main-content">
         <Promotion.Slider />

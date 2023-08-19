@@ -7,7 +7,7 @@ type Data = {
   result: Product[];
 };
 
-const db = [
+export const productDb = [
   {
     id: 1001,
     title: "포스트 콘프라이크",
@@ -91,5 +91,5 @@ const db = [
   }
 ];
 export default async function products(req: NextApiRequest, res: NextApiResponse<Data>) {
-  res.status(200).json({ status: 200, result: db });
+  res.status(200).json({ status: 200, result: productDb });
 }

@@ -6,7 +6,7 @@
   display: flex;
   z-index: 3;
   width: 100%;
-  max-width: $layout-max-width;
+  max-width: $sidetab-default-width;
   height: $topbar-height;
   border-bottom: 1px solid gray;
   background-color: #fff;
@@ -14,7 +14,6 @@
   & .inner {
     position: relative;
     width: 100%;
-
     & .col {
       display: flex;
       align-items: center;

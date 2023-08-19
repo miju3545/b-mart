@@ -1,14 +1,13 @@
 import React, { ReactNode } from "react";
 import { Box } from "@/components/atom/Box";
-import { Heading } from "@/components/atom/Heading";
-import { IconButton } from "@/components/atom/IconButton";
 import style from "./SideTab.module.scss";
 import classNames from "classnames/bind";
-import { Topbar } from "../Topbar";
+import { SideTabTopbar } from "../SideTabTopbar";
 const cx = classNames.bind(style);
 
 type Props = {
   title?: ReactNode;
+  trailingIcons?: ReactNode | ReactNode[];
   children: React.ReactNode;
   footer?: ReactNode[];
   onClose: () => void;
@@ -20,6 +19,7 @@ type Props = {
 
 export function SideTab({
   title,
+  trailingIcons,
   children,
   footer,
   onClose,
@@ -60,7 +60,7 @@ export function SideTab({
         }}
         onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => e.stopPropagation()}
       >
-        <Topbar title={title} onPrev={onPrev} />
+        <SideTabTopbar title={title} onPrev={onPrev} trailingIcons={trailingIcons} />
         <Box className="main-content">{children}</Box>
         {footer}
       </Box>
