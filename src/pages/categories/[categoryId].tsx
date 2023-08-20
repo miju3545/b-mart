@@ -12,6 +12,15 @@ import { Category, Product as ProductDto } from "@/lib/dto";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 
+const FilterOptions = [
+  { name: "판매랑", value: "saleCount" },
+  { name: "높은 가격순", value: "salePriceDesc" },
+  { name: "낮은 가격순", value: "salePriceAsc" },
+  { name: "최신순", value: "latestAsc" },
+  { name: "할인율순", value: "discountAsc" },
+  { name: "인기순", value: "bestAsc" }
+];
+
 export default function CategoryDetail() {
   const router = useRouter();
   const { registerSideTab, setPrevPageURL } = useContext(SideTabContext);
@@ -19,7 +28,6 @@ export default function CategoryDetail() {
   const categoryId = router.query.categoryId;
   const [cateogory, setCategory] = useState<Category>();
   const [products, setProducts] = useState<ProductDto[]>([]);
-
   useEffect(() => {
     setPrevPageURL(router.asPath);
   }, []);
@@ -30,7 +38,8 @@ export default function CategoryDetail() {
       .then((res) => res.json())
       .then((data) => setCategory(data.result));
 
-    fetch("/api/products")
+    // fetch(`/api/cateogories/${categoryId}/products`)
+    fetch(`/api/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data.result));
   }, [categoryId]);
@@ -49,6 +58,10 @@ export default function CategoryDetail() {
         <Promotion.Slider />
         <SubCategoryList list={cateogory?.subCategories || []} />
         <Product.Scrollable title="이 상품 어때요?" list={products} />
+        <Product.FilterBox
+          options={FilterOptions}
+          onChange={(target: any) => router.push({ pathname: router.asPath, query: { filters: target.value } })}
+        />
         <Product.List list={products} col={3} />
       </Box>
       <Box

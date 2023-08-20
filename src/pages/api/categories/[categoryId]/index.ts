@@ -1,6 +1,6 @@
 import { Category } from "@/lib/dto";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { categoryDb } from ".";
+import { categoryDb } from "..";
 
 type Data = {
   status: number;
