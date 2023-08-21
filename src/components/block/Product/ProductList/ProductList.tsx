@@ -13,7 +13,7 @@ type Props = {
   col?: number;
   start?: number;
   limit?: number;
-  refetchCallback: () => void;
+  refetchCallback?: () => void;
 };
 export function ProductList({ title, list, col = 1, start = 1, limit = 6, refetchCallback }: Props) {
   return (

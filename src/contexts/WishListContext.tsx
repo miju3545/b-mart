@@ -1,5 +1,4 @@
 import { Product } from "@/lib/dto";
-import { Wishlist } from "@/lib/dto/wishlist";
 import { PropsWithChildren, createContext, useEffect, useReducer, useState } from "react";
 
 type WishList = {
@@ -7,7 +6,8 @@ type WishList = {
     items: Product[];
   };
   isLoading: boolean;
-  updateWishlistItems: (items: Wishlist) => void;
+  useUpdateWishlistItem: () => { mutate: (currentProduct: Product) => Promise<unknown> };
+  inWishlist: (currentProduct: Product) => boolean;
 };
 
 export const WishListContext = createContext(false as unknown as WishList);
@@ -17,11 +17,19 @@ export const WishListContextProvider = ({ children }: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState(false);
   const [rending, rerender] = useReducer((prev) => !prev, false);
 
-  const updateWishlistItems = async (currentCart: WishList["wishlist"]) => {
-    const res = await fetch("/api/wishlist", { method: "PUT", body: JSON.stringify(currentCart) });
-    const data = res.json();
-    rerender();
-    return data;
+  const useUpdateWishlistItem = () => {
+    return {
+      mutate: async (currentProduct: Product) => {
+        const res = await fetch("/api/wishlist", { method: "PATCH", body: JSON.stringify(currentProduct) });
+        const data = res.json();
+        rerender();
+        return data;
+      }
+    };
+  };
+
+  const inWishlist = (currentProduct: Product) => {
+    return wishlist.items.some((product) => product.id === currentProduct.id);
   };
 
   useEffect(() => {
@@ -33,6 +41,8 @@ export const WishListContextProvider = ({ children }: PropsWithChildren) => {
   }, [rending]);
 
   return (
-    <WishListContext.Provider value={{ wishlist, isLoading, updateWishlistItems }}>{children}</WishListContext.Provider>
+    <WishListContext.Provider value={{ wishlist, isLoading, useUpdateWishlistItem, inWishlist }}>
+      {children}
+    </WishListContext.Provider>
   );
 };

@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import { Heading } from "@/components/atom/Heading";
 import { Box } from "@/components/atom/Box";
-import { ProductCard } from "../ProductCard/ProductCard";
 import { SubCategory } from "@/lib/dto/category";
 import { Product as ProductDto } from "@/lib/dto";
 import { ProductFlagShipList } from "./ProductFlagShipList";
@@ -39,7 +38,6 @@ export function ProductFlagShip({ title, list }: Props) {
           />
         ))}
       </ul>
-
       <ProductFlagShipList list={products} col={2} show={4} />
     </Box>
   );

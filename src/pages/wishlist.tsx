@@ -13,7 +13,7 @@ export default function Wishlist() {
     <Box>
       <Topbar title="찜한 상품" onPrev={router.back} />
       <Box className="main-content">
-        <Product.List list={wishlist?.items} />
+        <Product.List list={wishlist?.items} refetchCallback={() => {}} />
       </Box>
     </Box>
   );
