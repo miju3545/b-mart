@@ -26,7 +26,7 @@ export function ProductFlagShip({ title, list }: Props) {
   }, [list]);
 
   return (
-    <Box display="flex" flexDirection="column" gap={10} style={{ marginBottom: "100px" }}>
+    <Box display="flex" flexDirection="column" gap={10}>
       <Heading level={3}>{title}</Heading>
       <ul style={{ display: "flex", gap: "10px" }}>
         {list?.map((category) => (
