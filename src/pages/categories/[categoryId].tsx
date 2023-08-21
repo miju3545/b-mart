@@ -74,7 +74,8 @@ export default function CategoryDetail() {
         style={{
           position: "fixed",
           bottom: 0,
-          width: "1280px",
+          maxWidth: "1280px",
+          width: "100%",
           display: "flex",
           justifyContent: "flex-end",
           transform: "translate(-10px,-10px)"

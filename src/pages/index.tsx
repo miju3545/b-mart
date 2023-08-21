@@ -46,6 +46,7 @@ export default function Home() {
         <MainCategoryList list={mainCategories} />
         <Product.Scrollable title={`${user.name}님을 위해 준비한 상품`} list={products} show={6} />
         <Product.PreviewCarousel title="지금 사면 ⚡️ 번쩍 할인" list={products} />
+        <Promotion.Carousel list={promotions} />
         <Product.List title="지금 뭐먹지?" list={products} start={1} limit={6} refetchCallback={() => {}} />
         <Product.List title="지금 필요한 생필품?" list={products} start={1} limit={6} refetchCallback={() => {}} />
         <Product.Scrollable title="새로 나왔어요" list={products} hasViewMore show={20} />
@@ -63,7 +64,8 @@ export default function Home() {
         style={{
           position: "fixed",
           bottom: 0,
-          width: "1280px",
+          maxWidth: "1280px",
+          width: "100%",
           display: "flex",
           justifyContent: "flex-end",
           transform: "translate(-10px,-10px)"
