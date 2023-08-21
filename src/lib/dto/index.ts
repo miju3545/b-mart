@@ -1,3 +1,5 @@
 import { Product } from "./product";
 import { Category } from "./category";
-export type { Product, Category };
+import { Wishlist } from "./wishlist";
+import { Promotion } from "./promotion";
+export type { Product, Category, Wishlist, Promotion };

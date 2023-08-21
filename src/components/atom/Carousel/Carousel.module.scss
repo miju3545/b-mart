@@ -1,0 +1,36 @@
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: opacity;
+}
+
+.slider {
+  width: 100%;
+  height: 100%; //슬라이드 컨테이너 영역
+  .slick-list {
+    //슬라이드 스크린
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  .slick-slide div {
+    width: 100%;
+    height: 100%;
+  }
+
+  & .slick-dots {
+    //슬라이드의 위치
+    bottom: 0 !important;
+    background-color: blue;
+  }
+
+  .slick-track {
+    //이건 잘 모르겠음
+    // width: 100%;
+  }
+}

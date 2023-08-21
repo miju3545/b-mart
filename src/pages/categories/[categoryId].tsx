@@ -8,7 +8,7 @@ import { Product } from "@/components/block/Product";
 import { Promotion } from "@/components/block/Promotion";
 import { Topbar } from "@/components/block/Topbar";
 import { CartContext, SideTabContext } from "@/contexts/index";
-import { Category, Product as ProductDto } from "@/lib/dto";
+import { Category, Product as ProductDTO, Promotion as PromotionDTO } from "@/lib/dto";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 
@@ -27,7 +27,9 @@ export default function CategoryDetail() {
   const { cart } = useContext(CartContext);
   const categoryId = router.query.categoryId;
   const [cateogory, setCategory] = useState<Category>();
-  const [products, setProducts] = useState<ProductDto[]>([]);
+  const [products, setProducts] = useState<ProductDTO[]>([]);
+  const [promotions, setPromotions] = useState<PromotionDTO[]>([]);
+
   useEffect(() => {
     setPrevPageURL(router.asPath);
   }, []);
@@ -42,6 +44,10 @@ export default function CategoryDetail() {
     fetch(`/api/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data.result));
+
+    fetch(`/api/promotions`)
+      .then((res) => res.json())
+      .then((data) => setPromotions(data.result));
   }, [categoryId]);
 
   return (
@@ -55,14 +61,14 @@ export default function CategoryDetail() {
         onPrev={router.back}
       />
       <Box className="main-content">
-        <Promotion.Slider />
+        <Promotion.Carousel list={promotions} />
         <SubCategoryList list={cateogory?.subCategories || []} />
         <Product.Scrollable title="이 상품 어때요?" list={products} />
         <Product.FilterBox
           options={FilterOptions}
           onChange={(target: any) => router.push({ pathname: router.asPath, query: { filters: target.value } })}
         />
-        <Product.List list={products} col={3} />
+        <Product.List list={products} col={3} start={1} limit={6} refetchCallback={() => {}} />
       </Box>
       <Box
         style={{

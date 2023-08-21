@@ -91,6 +91,5 @@ const productDb = [
   }
 ];
 export default async function categoryProducts(req: NextApiRequest, res: NextApiResponse<Data>) {
-  console.log("hdhdhd");
   res.status(200).json({ status: 200, result: productDb });
 }

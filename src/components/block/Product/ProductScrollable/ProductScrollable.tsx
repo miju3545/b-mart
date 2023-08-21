@@ -10,8 +10,9 @@ type Props = {
   title: ReactNode;
   hasViewMore?: boolean;
   list: Product[];
+  show?: number;
 };
-export function ProductScrollable({ title, hasViewMore = false, list }: Props) {
+export function ProductScrollable({ title, hasViewMore = false, list, show = 6 }: Props) {
   return (
     <Box display="flex" flexDirection="column" gap={10} backgroundColor="lightGray">
       <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -19,9 +20,7 @@ export function ProductScrollable({ title, hasViewMore = false, list }: Props) {
         {hasViewMore && <IconButton icon="더보기 ＞" onClick={() => {}} />}
       </Box>
       <Scrollable>
-        {list.map((product) => (
-          <ProductCard key={product.id} product={product} size="sm" />
-        ))}
+        {list.slice(0, show)?.map((product) => <ProductCard key={product.id} product={product} size="sm" />)}
       </Scrollable>
     </Box>
   );

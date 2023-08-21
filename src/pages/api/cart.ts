@@ -42,11 +42,28 @@ const db = {
   ]
 };
 
+const mergeItems = (items: CartProduct[]) => {
+  const mergedItems = items.reduce((acc: CartProduct[], cur: CartProduct) => {
+    const existingItem = acc.find((item) => item.id === cur.id);
+
+    if (existingItem) {
+      existingItem.quantity += cur.quantity;
+    } else {
+      acc.push(cur);
+    }
+
+    return acc;
+  }, []);
+
+  return mergedItems;
+};
+
 export default async function cart(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.method === "PUT") {
     const list = JSON.parse(req.body);
     db.totalPrice = list.reduce((acc: number, cur: CartProduct) => acc + cur.discountPrice * cur.quantity, 0);
-    db.items = list;
+    db.items = mergeItems(list) as any;
+
     res.status(200).json({ status: 200, result: db });
   }
 
