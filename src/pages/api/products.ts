@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { Product } from "@/lib/dto";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -88,8 +87,30 @@ export const productDb = [
     price: 4000,
     categoryId: 4,
     imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
+  },
+  {
+    id: 1010,
+    title: "오곡 책스초코",
+    discountPrice: 4000,
+    discountPercent: 0,
+    price: 4000,
+    categoryId: 4,
+    imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
+  },
+  {
+    id: 1011,
+    title: "오곡 책스초코",
+    discountPrice: 4000,
+    discountPercent: 0,
+    price: 4000,
+    categoryId: 4,
+    imageUrl: "https://cdn-mart.baemin.com/sellergoods/main/066eded0-3e89-4652-879c-ab5fc35926cd.jpg?h=300&w=300"
   }
 ];
 export default async function products(req: NextApiRequest, res: NextApiResponse<Data>) {
-  res.status(200).json({ status: 200, result: productDb });
+  console.log(req.query);
+  res.status(200).json({
+    status: 200,
+    result: productDb.slice(Number(req.query.start || 0), Number(req.query.start || 0) + Number(req.query.limit || 10))
+  });
 }

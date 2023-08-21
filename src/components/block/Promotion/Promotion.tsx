@@ -1,4 +1,3 @@
-import { Box } from "@/components/atom/Box";
 import { Carousel } from "@/components/atom/Carousel";
 import { Promotion } from "@/lib/dto";
 

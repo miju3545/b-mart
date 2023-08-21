@@ -7,17 +7,20 @@ import { Promotion } from "@/components/block/Promotion";
 import { CartContext, SideTabContext, UserContext } from "@/contexts/index";
 import { Product as ProductDto, Promotion as PromotionDTO } from "@/lib/dto";
 import { SubCategory } from "@/lib/dto/category";
+import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 
 export default function Home() {
+  const router = useRouter();
   const { user } = useContext(UserContext);
   const { setPrevPageURL } = useContext(SideTabContext);
   const { cart } = useContext(CartContext);
   const [mainCategories, setMainCategories] = useState<MainCategoryProps[]>([]);
   const [products, setProducts] = useState<ProductDto[]>([]);
+  const [temp, setTemp] = useState<ProductDto[]>([]);
   const [promotions, setPromotions] = useState<PromotionDTO[]>([]);
   const [flagship, setFlagship] = useState<SubCategory[]>([]);
-
+  const [start, setStart] = useState(0);
   useEffect(() => {
     setPrevPageURL("/");
   }, []);
@@ -26,9 +29,12 @@ export default function Home() {
     fetch("/api/categories/main")
       .then((res) => res.json())
       .then((data) => setMainCategories(data.result));
-    fetch("/api/products")
+    fetch(`/api/products`)
       .then((res) => res.json())
-      .then((data) => setProducts(data.result));
+      .then((data) => {
+        setProducts(data.result);
+        setTemp(data.result);
+      });
     fetch(`/api/promotions`)
       .then((res) => res.json())
       .then((data) => setPromotions(data.result));
@@ -36,6 +42,12 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => setFlagship(data.result));
   }, []);
+
+  useEffect(() => {
+    fetch(`/api/products?start=${start}&limit=6`)
+      .then((res) => res.json())
+      .then((data) => setTemp(data.result));
+  }, [start]);
 
   return (
     <Box>
@@ -47,8 +59,14 @@ export default function Home() {
         <Product.Scrollable title={`${user.name}님을 위해 준비한 상품`} list={products} show={6} />
         <Product.PreviewCarousel title="지금 사면 ⚡️ 번쩍 할인" list={products} />
         <Promotion.Carousel list={promotions} />
-        <Product.List title="지금 뭐먹지?" list={products} start={1} limit={6} refetchCallback={() => {}} />
-        <Product.List title="지금 필요한 생필품?" list={products} start={1} limit={6} refetchCallback={() => {}} />
+        <Product.List
+          title="지금 뭐먹지?"
+          list={temp}
+          start={start * (temp.length / 6)}
+          limit={6}
+          onNextPage={setStart}
+        />
+        {/* <Product.List title="지금 필요한 생필품?" list={products} start={0} limit={6} onNextPage={() => {}} /> */}
         <Product.Scrollable title="새로 나왔어요" list={products} hasViewMore show={20} />
         <Product.Scrollable title="요즘 잘팔려요" list={products} hasViewMore show={20} />
         <Product.FlagShip

@@ -13,24 +13,23 @@ type Props = {
   col?: number;
   start?: number;
   limit?: number;
-  refetchCallback?: () => void;
+  onNextPage?: (start: number) => void;
 };
-export function ProductList({ title, list, col = 1, start = 1, limit = 6, refetchCallback }: Props) {
+export function ProductList({ title, list, col = 1, start = 0, limit = 6, onNextPage }: Props) {
+  const currentPage = Math.ceil(start / limit) + 1;
+  const totalPage = Math.ceil(list.length / limit) + 1;
   return (
     <Box display="flex" flexDirection="column" width="100%" gap={10}>
       {title && <Heading level={3}>{title}</Heading>}
       <ul className={cx("card-list", `col-${col}`)}>
-        {list.slice(0, 6).map((product) => (
+        {list.map((product) => (
           <ProductCard key={product.id} product={product} size="lg" responsive />
         ))}
       </ul>
       <Box display="flex">
-        <button type="button" onClick={refetchCallback}>
-          지금 필요한...
+        <button type="button" onClick={() => onNextPage?.(start + limit)} disabled={currentPage >= totalPage}>
+          다른 상품 보기({currentPage}/{totalPage})
         </button>
-        <span>
-          다른 상품 보기({start}/{list.length / limit})
-        </span>
       </Box>
     </Box>
   );

@@ -68,7 +68,7 @@ export default function CategoryDetail() {
           options={FilterOptions}
           onChange={(target: any) => router.push({ pathname: router.asPath, query: { filters: target.value } })}
         />
-        <Product.List list={products} col={3} start={1} limit={6} refetchCallback={() => {}} />
+        <Product.List list={products} col={3} start={1} limit={6} />
       </Box>
       <Box
         style={{
