@@ -1,5 +1,5 @@
 import { ProductScrollable } from "./ProductScrollable";
-import { ProductPreviewSlider } from "./ProductPreviewSlider";
+import { ProductPreviewCarousel } from "./ProductPreviewCarousel";
 import { ProductList } from "./ProductList";
 import { ProductFlagShip } from "./ProductFlagShip";
 import { ProductSelectTable } from "./ProductSelectTable";
@@ -10,7 +10,7 @@ export function Product() {
 
 Product.List = ProductList;
 Product.Scrollable = ProductScrollable;
-Product.PreviewSlider = ProductPreviewSlider;
+Product.PreviewCarousel = ProductPreviewCarousel;
 Product.FlagShip = ProductFlagShip;
 Product.SelectTable = ProductSelectTable;
 Product.FilterBox = ProductFilterBox;

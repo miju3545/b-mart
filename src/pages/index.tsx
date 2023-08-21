@@ -45,7 +45,7 @@ export default function Home() {
         <Promotion.Carousel list={promotions} />
         <MainCategoryList list={mainCategories} />
         <Product.Scrollable title={`${user.name}님을 위해 준비한 상품`} list={products} show={6} />
-        <Product.PreviewSlider title="지금 사면 ⚡️ 번쩍 할인" list={products} />
+        <Product.PreviewCarousel title="지금 사면 ⚡️ 번쩍 할인" list={products} />
         <Product.List title="지금 뭐먹지?" list={products} start={1} limit={6} refetchCallback={() => {}} />
         <Product.List title="지금 필요한 생필품?" list={products} start={1} limit={6} refetchCallback={() => {}} />
         <Product.Scrollable title="새로 나왔어요" list={products} hasViewMore show={20} />

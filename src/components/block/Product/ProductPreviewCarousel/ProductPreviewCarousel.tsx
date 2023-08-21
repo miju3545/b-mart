@@ -1,10 +1,8 @@
-import { Slider } from "@/components/atom/Slider";
 import { ReactNode, useState } from "react";
 import { Heading } from "@/components/atom/Heading";
 import { Box } from "@/components/atom/Box";
 import { Product } from "@/lib/dto";
 import { Scrollable } from "@/components/atom/Scrollable";
-import { ProductCard } from "../ProductCard/ProductCard";
 import { useEffect } from "react";
 import Image from "next/image";
 import { ProductFlagShipCard } from "../ProductFlagShip/ProductFlagShipCard";
@@ -14,7 +12,7 @@ type Props = {
   list: Product[];
 };
 
-export function ProductPreviewSlider({ title, list }: Props) {
+export function ProductPreviewCarousel({ title, list }: Props) {
   const [currentItem, setCurrentItem] = useState<Product>(list?.[0]);
 
   useEffect(() => {
