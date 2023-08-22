@@ -8,8 +8,8 @@ import { Scrollable } from "@/components/atom/Scrollable/Scrollable";
 
 type Props = {
   title: ReactNode;
-  hasViewMore?: boolean;
   list: Product[];
+  hasViewMore?: boolean;
   show?: number;
 };
 export function ProductScrollable({ title, hasViewMore = false, list, show = 6 }: Props) {

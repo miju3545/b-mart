@@ -58,14 +58,7 @@ export default function Home() {
         {/* isViewMore, isMore */}
         <ProductScrollable title="새로 나왔어요" list={products} hasViewMore show={20} />
         <ProductScrollable title="요즘 잘팔려요" list={products} hasViewMore show={20} />
-        <ProductFlagShip
-          title={
-            <>
-              <strong>번쩍하면 배달오는</strong> B마트 대표상품
-            </>
-          }
-          list={flagship}
-        />
+        <ProductFlagShip title="번쩍하면 배달오는 B마트 대표상품" list={flagship} />
       </Box>
       <Box
         style={{
