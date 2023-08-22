@@ -23,13 +23,13 @@ export function ProductList({ title, list, col = 1 }: Props) {
     <Box display="flex" flexDirection="column" width="100%" gap={10}>
       {title && <Heading level={3}>{title}</Heading>}
       <ul className={cx("card-list", `col-${col}`)}>
-        {currentData.map((product) => (
+        {list.map((product) => (
           <ProductCard key={product.id} product={product} size="lg" responsive />
         ))}
       </ul>
-      <button type="button" onClick={() => setStart((prev) => prev + limit)} disabled={currentPage >= totalPage}>
+      {/* <button type="button" onClick={() => setStart((prev) => prev + limit)} disabled={currentPage >= totalPage}>
         다른 상품 보기({currentPage}/{totalPage})
-      </button>
+      </button> */}
     </Box>
   );
 }
