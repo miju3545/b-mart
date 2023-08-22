@@ -1,7 +1,7 @@
 import { Box } from "@/components/atom/Box";
 import { ProductSelectCard } from "../ProductSelectCard";
 import { CartProduct } from "@/lib/dto/cart";
-import { useSelect } from "@/hooks/useSelect";
+import { useOption } from "@/hooks/useOption";
 import { useContext, useEffect } from "react";
 import { CartContext } from "@/contexts/index";
 
@@ -11,7 +11,7 @@ type Props = {
 
 export function ProductSelectTable({ list }: Props) {
   const { setCurrentPrice, useUpdateCartItems } = useContext(CartContext);
-  const { selected, toggleSelected, toggleSelectedAll } = useSelect(list);
+  const { selected, toggleSelected, toggleSelectedAll } = useOption(list);
   const { mutate } = useUpdateCartItems();
   const calculatePrice = () => {
     let price = 0;
