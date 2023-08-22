@@ -108,8 +108,9 @@ export const productDb = [
   }
 ];
 export default async function products(req: NextApiRequest, res: NextApiResponse<Data>) {
+  const modifiedDB = productDb.length < 24 ? productDb : productDb.slice(0, 24);
   res.status(200).json({
     status: 200,
-    result: productDb
+    result: modifiedDB
   });
 }
