@@ -1,9 +1,7 @@
 import { Box } from "@/components/atom/Box";
-import { IconButton } from "@/components/atom/IconButton";
-import { Product } from "@/components/block/Product";
+import { ProductSelectTable } from "@/components/block/product/ProductSelectTable";
 import { Topbar } from "@/components/block/Topbar";
 import { CartContext } from "@/contexts/index";
-import { Cart } from "@/lib/dto/cart";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
 
@@ -15,7 +13,7 @@ export default function Orders() {
     <Box>
       <Topbar title="주문 내역" onPrev={router.back} />
       <Box className="main-content">
-        <Product.SelectTable list={cart.items} />
+        <ProductSelectTable list={cart.items} />
       </Box>
     </Box>
   );

@@ -14,35 +14,35 @@ import {
 import { Layout } from "@/components/block";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [queryClient] = useState(
-    new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: 1,
-          refetchOnWindowFocus: false,
-          useErrorBoundary: false
-        }
-      }
-    })
-  );
+  // const [queryClient] = useState(
+  //   new QueryClient({
+  //     defaultOptions: {
+  //       queries: {
+  //         retry: 1,
+  //         refetchOnWindowFocus: false,
+  //         useErrorBoundary: false
+  //       }
+  //     }
+  //   })
+  // );
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <SideTabContextProvider>
-        <ModalContextProvider>
-          <UserContextProvider>
-            <WishListContextProvider>
-              <CartContextProvider>
-                <OrderListContextProvider>
-                  <Layout>
-                    <Component {...pageProps} />
-                  </Layout>
-                </OrderListContextProvider>
-              </CartContextProvider>
-            </WishListContextProvider>
-          </UserContextProvider>
-        </ModalContextProvider>
-      </SideTabContextProvider>
-    </QueryClientProvider>
+    // <QueryClientProvider client={queryClient}>
+    <SideTabContextProvider>
+      {/* <ModalContextProvider> */}
+      <UserContextProvider>
+        <WishListContextProvider>
+          <CartContextProvider>
+            <OrderListContextProvider>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </OrderListContextProvider>
+          </CartContextProvider>
+        </WishListContextProvider>
+      </UserContextProvider>
+      {/* </ModalContextProvider> */}
+    </SideTabContextProvider>
+    // </QueryClientProvider>
   );
 }

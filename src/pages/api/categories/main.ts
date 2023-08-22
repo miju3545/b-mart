@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
   status: number;
-  result: MainCategory[];
+  result: any[];
 };
 
 const db = [
@@ -54,8 +54,8 @@ const db = [
   }
 ];
 
-export default async function categories(req: NextApiRequest, res: NextApiResponse<Data>) {
+export default async function categories(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
-    res.status(200).json({ status: 200, result: db });
+    res.status(200).json({ status: 200, ret: db });
   } catch (err) {}
 }

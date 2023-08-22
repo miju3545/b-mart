@@ -7,11 +7,11 @@ import { SideTabContext } from "@/contexts/index";
 import { MenuTab } from "../..";
 const cx = classNames.bind(style);
 
-type Props = {
+export type MainCategoryProps = {
   list: MainCategory[];
 };
 
-export function MainCategoryList({ list }: Props) {
+export function MainCategoryList({ list }: MainCategoryProps) {
   const { registerSideTab } = useContext(SideTabContext);
   return (
     <ul className={cx("category-list")}>
