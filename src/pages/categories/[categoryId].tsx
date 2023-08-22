@@ -69,7 +69,7 @@ export default function CategoryDetail() {
           options={FilterOptions}
           onChange={(target: any) => router.push({ pathname: router.asPath, query: { filters: target.value } })}
         />
-        <ProductList list={products} col={3} start={1} limit={6} />
+        <ProductList list={products} col={3} />
       </Box>
       <Box
         style={{

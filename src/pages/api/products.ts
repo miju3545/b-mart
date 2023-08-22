@@ -108,9 +108,8 @@ export const productDb = [
   }
 ];
 export default async function products(req: NextApiRequest, res: NextApiResponse<Data>) {
-  console.log(req.query);
   res.status(200).json({
     status: 200,
-    result: productDb.slice(Number(req.query.start || 0), Number(req.query.start || 0) + Number(req.query.limit || 10))
+    result: productDb
   });
 }
