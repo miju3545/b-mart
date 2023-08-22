@@ -1,8 +1,8 @@
 import React, { ReactNode, useContext } from "react";
 import { Box } from "@/components/atom/Box";
-import { SideTabTopbar } from "../SideTabTopbar";
 import { SideTabContext } from "@/contexts/index";
 import { animated, useSpring } from "react-spring";
+import { SideTabTopbar } from "./SideTabTopbar";
 
 type Props = {
   title?: ReactNode;
