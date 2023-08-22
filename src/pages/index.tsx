@@ -53,10 +53,10 @@ export default function Home() {
         <ProductScrollable title={`${user.name}님을 위해 준비한 상품`} list={products} show={6} />
         <ProductPreviewCarousel title="지금 사면 ⚡️ 번쩍 할인" list={products} />
         <Carousel items={promotions} />
-        <ProductList title="지금 뭐먹지?" list={products} />
+        <ProductList title="지금 뭐먹지?" list={products} showPagination />
         <ProductList title="지금 필요한 생필품?" list={products} />
         {/* isViewMore, isMore */}
-        <ProductScrollable title="새로 나왔어요" list={products} hasViewMore show={20} />
+        <ProductScrollable title="새로 나왔어요" list={products} hasViewMore />
         <ProductScrollable title="요즘 잘팔려요" list={products} hasViewMore show={20} />
         <ProductFlagShip title="번쩍하면 배달오는 B마트 대표상품" list={flagship} />
       </Box>
